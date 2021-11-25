@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/include",
+                "C:\\lib\\glfw-3.3.5\\include",
+                "C:\\lib\\zlib-1.2.11",
+                "C:\\lib\\zlib-1.2.11\\cmake-build-release",
+                "C:\\Users\\Ryan\\Desktop\\Files\\Projects\\Programming\\FaceEngine\\include",
+                "C:\\Users\\Ryan\\Desktop\\Files\\Projects\\Programming\\FaceEngineGUI\\include"
+            ],
+            "compilerPath": "C:\\msys64\\mingw64\\bin\\gcc.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-gcc-x64"
+        }
+    ],
+    "version": 4
+}

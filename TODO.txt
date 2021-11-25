@@ -1,0 +1,36 @@
+TODO:
+
+Texture Creation:
+    - Actually make it (low priority)
+
+Component Creation:
+    - easy way to make complex components (ComponentFactory)
+
+Components:
+    Regular
+    - Button
+    - Checkbox
+    - Sprite/GIF (need better name)
+    - Label
+    - Toggle
+
+    Compound
+    - Dropdown/Dropdown button
+    - Slider
+    - Stepper
+    - Progress Bar
+    - Date/Time picker
+    - DisplayList
+    - Tree (file browser)
+
+    Text
+    - Textbox
+    - Textfield
+
+    Container
+    - Accordion
+    - Carousel
+
+Random:
+    - Add easy way to centre components
+    - Right click functionality to all components.
