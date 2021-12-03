@@ -3,17 +3,7 @@
 
 namespace FaceEngineGUI::Components
 {
-    Button::Button(std::shared_ptr<FaceEngine::Graphics::Texture2D> texture) : FaceEngineGUI::UIComponent(nullptr)
-    {
-        Initialise(texture);
-    }
-
     Button::Button(std::shared_ptr<FaceEngine::Graphics::Texture2D> texture, UIComponent* parent) : FaceEngineGUI::UIComponent(0, 0, 0, 0, parent)
-    {
-        Initialise(texture);
-    }
-
-    Button::Button(int x, int y, int width, int height, std::shared_ptr<FaceEngine::Graphics::Texture2D> texture) : FaceEngineGUI::UIComponent(x, y, width, height, nullptr)
     {
         Initialise(texture);
     }
@@ -51,6 +41,11 @@ namespace FaceEngineGUI::Components
             buttonState = FaceEngineGUI::Util::UIButtonState::HOVERED;
             sourceRectangle.Y = Texture->GetHeight() / 3;
         }
+    }
+
+    FaceEngineGUI::Util::UIButtonState Button::GetState() const
+    {
+        return buttonState;
     }
 
     void Button::Update(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate)

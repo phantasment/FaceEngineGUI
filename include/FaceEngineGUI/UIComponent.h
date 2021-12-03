@@ -14,9 +14,6 @@ namespace FaceEngineGUI
 {
     class UIComponent
     {
-        private:
-            void Initialise(const int x, const int y, const int width, const int height, UIComponent* parent);
-
         protected:
             TransformManager TManager;
             AnimationManager AManager;
@@ -35,7 +32,12 @@ namespace FaceEngineGUI
             virtual void Update(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate);
             virtual void Draw(std::shared_ptr<FaceEngine::Graphics::SpriteRenderer> renderer);
 
+            void UpdateAnimations(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate);
+
         public:
+            void InitialiseAnimations();
+            void SetIntroTransition(FaceEngineGUI::Animations::Transition* introTransition);
+
             void AddChild(UIComponent* childComp);
             void RemoveChild(UIComponent* childComp);
 

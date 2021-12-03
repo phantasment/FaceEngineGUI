@@ -27,15 +27,14 @@ namespace FaceEngineGUI::Components
 
         // ----- Constructors and Destructors -----
 
-        Button(std::shared_ptr<FaceEngine::Graphics::Texture2D> texture);
-        Button(std::shared_ptr<FaceEngine::Graphics::Texture2D> texture, FaceEngineGUI::UIComponent* parent);
-        Button(int x, int y, int width, int height, std::shared_ptr<FaceEngine::Graphics::Texture2D> texture);
-        Button(int x, int y, int width, int height, std::shared_ptr<FaceEngine::Graphics::Texture2D> texture, FaceEngineGUI::UIComponent* parent);
+        Button(std::shared_ptr<FaceEngine::Graphics::Texture2D> texture, FaceEngineGUI::UIComponent* parent = nullptr);
+        Button(int x, int y, int width, int height, std::shared_ptr<FaceEngine::Graphics::Texture2D> texture, FaceEngineGUI::UIComponent* parent = nullptr);
 
         ~Button() { }
 
         // ----- Methods -----
 
+        FaceEngineGUI::Util::UIButtonState GetState() const;
         void Update(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate) override;
         void Draw(std::shared_ptr<FaceEngine::Graphics::SpriteRenderer> renderer) override;
     };
