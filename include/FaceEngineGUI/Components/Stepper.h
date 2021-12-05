@@ -12,7 +12,7 @@ namespace FaceEngineGUI::Components
 {
     class Stepper : public FaceEngineGUI::UIComponent
     {
-    public:
+    private:
         FaceEngine::Math::Rectangle stepperButtonBounds;
         FaceEngine::Math::Rectangle stepperButtonSourceRect;
         FaceEngineGUI::Util::UIButtonState state;
@@ -21,7 +21,7 @@ namespace FaceEngineGUI::Components
 
         void UpdateState(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate);
 
-    //public:
+    public:
         std::shared_ptr<FaceEngine::Graphics::Texture2D> StepperRailTexture;
         std::shared_ptr<FaceEngine::Graphics::Texture2D> StepperButtonTexture;
 

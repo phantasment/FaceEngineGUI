@@ -12,7 +12,6 @@ Components:
 
     Compound
     - Dropdown/Dropdown button
-    - Stepper (discrete slider)
     - Progress Bar
     - Date/Time picker
     - Tree (file browser)

@@ -15,4 +15,4 @@ target_link_libraries(FaceEngineGUI PUBLIC ${FaceEngine_LIBRARIES} ${glfw_LIBRAR
 target_link_libraries(FaceEngineGUIStatic PUBLIC ${FaceEngine_LIBRARIES} ${glfw_LIBRARIES} ${ZLIB_LIBRARIES})
 
 set_target_properties(FaceEngineGUI PROPERTIES OUTPUT_NAME FaceEngineGUI)
-set_target_properties(FaceEngineGUIStatic PROPERTIES OUTPUT_NAME FaceEngineStatic)
+set_target_properties(FaceEngineGUIStatic PROPERTIES OUTPUT_NAME FaceEngineGUIStatic)
