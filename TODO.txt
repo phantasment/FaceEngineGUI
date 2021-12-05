@@ -15,7 +15,6 @@ Components:
     - Stepper (discrete slider)
     - Progress Bar
     - Date/Time picker
-    - DisplayList
     - Tree (file browser)
     - Colour picker
     - Curve Picker (like bezier/polynomial etc...)
@@ -28,6 +27,7 @@ Components:
     Container
     - Accordion
     - Carousel
+    - DisplayScroller
 
 Animations:
     - In/Out transitions
@@ -43,6 +43,8 @@ Random:
     - Add ability to add text to all components
     - Slider: make it so when you click the sliderail, the slider button goes to that location (centred on the mouse),
               otherwise, when the slider button is clicked, the position is relative to the click position on the texture.
+    - Slider: add orientation (up/down and left/right).
+    - Conform all code to standard.
 
 ----- BUGS -----
 

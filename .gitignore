@@ -1,2 +1,3 @@
 .vscode/
 build-win64/
+build/
