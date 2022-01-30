@@ -26,7 +26,7 @@ namespace FaceEngineGUI::Animations
         return (_currentDuration / _duration) * std::abs(_initialValue) + _initialValue;
     }
 
-    void Animation::Update(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate)
+    void Animation::Update(FaceEngine::GameUpdate* gameUpdate)
     {
         if (!_playing)
         {

@@ -21,7 +21,7 @@ namespace FaceEngineGUI::Animations
         ~Animation();
 
         float GetValue();
-        void Update(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate);
+        void Update(FaceEngine::GameUpdate* gameUpdate);
         void Stop();
         void Play();
 

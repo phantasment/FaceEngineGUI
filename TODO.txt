@@ -24,6 +24,7 @@ Components:
     - Textfield
 
     Container
+    - Container
     - Accordion
     - Carousel
     - DisplayScroller
@@ -33,6 +34,7 @@ Animations:
     - passive animations
     - AnimationFactory (repo for certain transitions)
     - OnHover, OnClick etc...
+    - Animations specific to components (dropdown animation for extension)
     - Play/Pause/Stop transitions
 
 Random:
@@ -44,6 +46,8 @@ Random:
               otherwise, when the slider button is clicked, the position is relative to the click position on the texture.
     - Slider: add orientation (up/down and left/right).
     - Conform all code to standard.
+    - Add all setters/getters of position/scale to transform manager of uicomponent.
+    - Add max height for dropdown extension with scrollbar.
 
 ----- BUGS -----
 

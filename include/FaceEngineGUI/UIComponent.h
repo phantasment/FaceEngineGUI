@@ -8,7 +8,6 @@
 #include "FaceEngineGUI/Transforms/UIScale.h"
 #include "FaceEngine/GameUpdate.h"
 #include "FaceEngine/Graphics/SpriteRenderer.h"
-#include <memory>
 
 namespace FaceEngineGUI
 {
@@ -26,15 +25,16 @@ namespace FaceEngineGUI
             UIComponent(UIComponent* parent = nullptr);
             UIComponent(const int width, const int height, UIComponent* parent = nullptr);
             UIComponent(const int x, const int y, const int width, const int height, UIComponent* parent = nullptr);
-            virtual ~UIComponent();            
 
             virtual void RefreshComponent();
-            virtual void Update(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate);
-            virtual void Draw(std::shared_ptr<FaceEngine::Graphics::SpriteRenderer> renderer);
 
-            void UpdateAnimations(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate);
+            void UpdateAnimations(FaceEngine::GameUpdate* gameUpdate);
 
         public:
+            virtual ~UIComponent();
+            virtual void Update(FaceEngine::GameUpdate* gameUpdate);
+            virtual void Draw(FaceEngine::Graphics::SpriteRenderer* renderer);
+
             void InitialiseAnimations();
             void SetIntroTransition(FaceEngineGUI::Animations::Transition* introTransition);
 

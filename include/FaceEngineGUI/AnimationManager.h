@@ -19,7 +19,7 @@ namespace FaceEngineGUI
         AnimationManager();
         ~AnimationManager();
 
-        void Update(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate);
+        void Update(FaceEngine::GameUpdate* gameUpdate);
         void PlayIntro();
         void PlayOutro();
         // void PlayAnimation(int index);

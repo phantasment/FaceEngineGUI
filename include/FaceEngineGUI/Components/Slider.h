@@ -6,7 +6,6 @@
 #include "FaceEngine/Graphics/Texture2D.h"
 #include "FaceEngineGUI/Components/Button.h"
 #include "FaceEngine/GameUpdate.h"
-#include <memory>
 
 namespace FaceEngineGUI::Components
 {
@@ -18,22 +17,22 @@ namespace FaceEngineGUI::Components
         FaceEngineGUI::Util::UIButtonState state;
         bool focused;
 
-        void UpdateState(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate);
+        void UpdateState(FaceEngine::GameUpdate* gameUpdate);
 
     public:
-        std::shared_ptr<FaceEngine::Graphics::Texture2D> SliderailTexture;
-        std::shared_ptr<FaceEngine::Graphics::Texture2D> SliderTexture;
+        FaceEngine::Graphics::Texture2D* SliderailTexture;
+        FaceEngine::Graphics::Texture2D* SliderTexture;
 
         Slider(int x, int y, int railLength, int railHeight, int sliderWidth, int sliderHeight, 
-               std::shared_ptr<FaceEngine::Graphics::Texture2D> sliderailTexture, 
-               std::shared_ptr<FaceEngine::Graphics::Texture2D> sliderTexture, 
+               FaceEngine::Graphics::Texture2D* sliderailTexture, 
+               FaceEngine::Graphics::Texture2D* sliderTexture, 
                FaceEngineGUI::UIComponent* parent = nullptr);
         ~Slider();
 
         float GetValue() const;
 
-        void Update(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate) override;
-        void Draw(std::shared_ptr<FaceEngine::Graphics::SpriteRenderer> renderer) override;
+        void Update(FaceEngine::GameUpdate* gameUpdate) override;
+        void Draw(FaceEngine::Graphics::SpriteRenderer* renderer) override;
     };
 }
 

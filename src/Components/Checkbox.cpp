@@ -2,7 +2,7 @@
 
 namespace FaceEngineGUI::Components
 {
-    Checkbox::Checkbox(std::shared_ptr<FaceEngine::Graphics::Texture2D> texture, FaceEngineGUI::UIComponent* parent) : FaceEngineGUI::UIComponent(parent)
+    Checkbox::Checkbox(FaceEngine::Graphics::Texture2D* texture, FaceEngineGUI::UIComponent* parent) : FaceEngineGUI::UIComponent(parent)
     {
         Texture = texture;
         state = FaceEngineGUI::Util::NEUTRAL;
@@ -10,7 +10,7 @@ namespace FaceEngineGUI::Components
         sourceRectangle = FaceEngine::Math::Rectangle(0, 0, texture->GetWidth(), texture->GetHeight() / 6);
     }
 
-    Checkbox::Checkbox(int x, int y, int width, int height, std::shared_ptr<FaceEngine::Graphics::Texture2D> texture, FaceEngineGUI::UIComponent* parent) : FaceEngineGUI::UIComponent(x, y, width, height, parent)
+    Checkbox::Checkbox(int x, int y, int width, int height, FaceEngine::Graphics::Texture2D* texture, FaceEngineGUI::UIComponent* parent) : FaceEngineGUI::UIComponent(x, y, width, height, parent)
     {
         Texture = texture;
         state = FaceEngineGUI::Util::NEUTRAL;
@@ -18,7 +18,7 @@ namespace FaceEngineGUI::Components
         sourceRectangle = FaceEngine::Math::Rectangle(0, 0, texture->GetWidth(), texture->GetHeight() / 6);
     }
 
-    void Checkbox::UpdateState(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate)
+    void Checkbox::UpdateState(FaceEngine::GameUpdate* gameUpdate)
     {
         if (!Bounds.Contains(gameUpdate->GetCursorPos()))
         {
@@ -66,13 +66,13 @@ namespace FaceEngineGUI::Components
         }
     }
 
-    void Checkbox::Update(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate)
+    void Checkbox::Update(FaceEngine::GameUpdate* gameUpdate)
     {
         UpdateState(gameUpdate);
         FaceEngineGUI::UIComponent::Update(gameUpdate);
     }
 
-    void Checkbox::Draw(std::shared_ptr<FaceEngine::Graphics::SpriteRenderer> renderer)
+    void Checkbox::Draw(FaceEngine::Graphics::SpriteRenderer* renderer)
     {
         renderer->Draw(Texture, Bounds, sourceRectangle);
     }

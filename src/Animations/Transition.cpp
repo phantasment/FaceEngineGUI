@@ -25,7 +25,7 @@ namespace FaceEngineGUI::Animations
         delete AlphaDriver;
     }
 
-    void Transition::Update(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate)
+    void Transition::Update(FaceEngine::GameUpdate* gameUpdate)
     {
         if (XDriver != nullptr)
         {

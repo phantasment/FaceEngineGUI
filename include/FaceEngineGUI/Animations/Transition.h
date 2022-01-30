@@ -28,7 +28,7 @@ namespace FaceEngineGUI::Animations
         int GetHeightOffset() const;
         float GetAlphaOffset() const;
 
-        void Update(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate);
+        void Update(FaceEngine::GameUpdate* gameUpdate);
 
         void Play();
         //void Pause();

@@ -19,22 +19,22 @@ namespace FaceEngineGUI::Components
         bool focused;
         int stepLength;
 
-        void UpdateState(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate);
+        void UpdateState(FaceEngine::GameUpdate* gameUpdate);
 
     public:
-        std::shared_ptr<FaceEngine::Graphics::Texture2D> StepperRailTexture;
-        std::shared_ptr<FaceEngine::Graphics::Texture2D> StepperButtonTexture;
+        FaceEngine::Graphics::Texture2D* StepperRailTexture;
+        FaceEngine::Graphics::Texture2D* StepperButtonTexture;
 
         Stepper(int x, int y, int railLength, int railHeight, int buttonWidth, int buttonHeight, int steps,
-               std::shared_ptr<FaceEngine::Graphics::Texture2D> stepperRailTexture, 
-               std::shared_ptr<FaceEngine::Graphics::Texture2D> stepperButtonTexture, 
+               FaceEngine::Graphics::Texture2D* stepperRailTexture, 
+               FaceEngine::Graphics::Texture2D* stepperButtonTexture, 
                FaceEngineGUI::UIComponent* parent = nullptr);
         ~Stepper();
 
         float GetValue() const;
 
-        void Update(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate) override;
-        void Draw(std::shared_ptr<FaceEngine::Graphics::SpriteRenderer> renderer) override;
+        void Update(FaceEngine::GameUpdate* gameUpdate) override;
+        void Draw(FaceEngine::Graphics::SpriteRenderer* renderer) override;
     };
 }
 

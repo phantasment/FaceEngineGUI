@@ -3,21 +3,22 @@
 #include "FaceEngineGUI/Transforms/Translations/PixelTranslation.h"
 #include "FaceEngineGUI/Transforms/Scales/PixelScale.h"
 #include <iostream>
+#include <algorithm>
 
 namespace FaceEngineGUI
 {
     UIComponent::UIComponent(UIComponent* parent)
     {
-        Parent = parent;
+        Parent = nullptr;
 
         TManager.XTranslation = new Transforms::Translations::PixelTranslation(0);
         TManager.YTranslation = new Transforms::Translations::PixelTranslation(0);
         TManager.WidthScale = new Transforms::Scales::PixelScale(0);
         TManager.HeightScale = new Transforms::Scales::PixelScale(0);
 
-        if (Parent != nullptr)
+        if (parent != nullptr)
         {
-            Parent->AddChild(this);
+            parent->AddChild(this);
         }
 
         RefreshComponent();
@@ -25,16 +26,16 @@ namespace FaceEngineGUI
 
     UIComponent::UIComponent(const int width, const int height, UIComponent* parent)
     {
-        Parent = parent;
+        Parent = nullptr;
 
         TManager.XTranslation = new Transforms::Translations::PixelTranslation(0);
         TManager.YTranslation = new Transforms::Translations::PixelTranslation(0);
         TManager.WidthScale = new Transforms::Scales::PixelScale(width);
         TManager.HeightScale = new Transforms::Scales::PixelScale(height);
 
-        if (Parent != nullptr)
+        if (parent != nullptr)
         {
-            Parent->AddChild(this);
+            parent->AddChild(this);
         }
 
         RefreshComponent();
@@ -42,16 +43,16 @@ namespace FaceEngineGUI
 
     UIComponent::UIComponent(const int x, const int y, const int width, const int height, UIComponent* parent)
     {
-        Parent = parent;
+        Parent = nullptr;
 
         TManager.XTranslation = new Transforms::Translations::PixelTranslation(x);
         TManager.YTranslation = new Transforms::Translations::PixelTranslation(y);
         TManager.WidthScale = new Transforms::Scales::PixelScale(width);
         TManager.HeightScale = new Transforms::Scales::PixelScale(height);
 
-        if (Parent != nullptr)
+        if (parent != nullptr)
         {
-            Parent->AddChild(this);
+            parent->AddChild(this);
         }
 
         RefreshComponent();
@@ -88,24 +89,64 @@ namespace FaceEngineGUI
         //TODO: refresh children.
     }
 
-    void UIComponent::InitialiseAnimations()
-    {
-        AManager.PlayIntro();
-    }
-
-    void UIComponent::Update(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate)
+    void UIComponent::Update(FaceEngine::GameUpdate* gameUpdate)
     {
         UpdateAnimations(gameUpdate);
 
         //TODO: update children.
     }
 
-    void UIComponent::Draw(std::shared_ptr<FaceEngine::Graphics::SpriteRenderer> renderer)
+    void UIComponent::Draw(FaceEngine::Graphics::SpriteRenderer* renderer)
     {
         //TODO: draw children.
     }
 
-    void UIComponent::UpdateAnimations(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate)
+    void UIComponent::AddChild(UIComponent* childComp)
+    {
+        for (int i = 0; i < Children.size(); ++i)
+        {
+            if (Children[i] == childComp)
+            {
+                return;
+            }
+        }
+
+        Children.push_back(childComp);
+
+        if (childComp->Parent != nullptr)
+        {
+            childComp->Parent->RemoveChild(childComp);
+        }
+
+        childComp->Parent = this;
+    }
+
+    void UIComponent::RemoveChild(UIComponent* childComp)
+    {
+        std::cout << Children.size() << std::endl;
+
+        for (int i = 0; i < Children.size(); ++i)
+        {
+            if (Children[i] == childComp)
+            {
+                childComp->Parent = nullptr;
+                childComp->RefreshComponent();
+
+                Children.erase(Children.begin() + i - 1);
+
+                break;
+            }
+        }
+
+        std::cout << Children.size() << std::endl;
+    }
+    
+    void UIComponent::InitialiseAnimations()
+    {
+        AManager.PlayIntro();
+    }
+
+    void UIComponent::UpdateAnimations(FaceEngine::GameUpdate* gameUpdate)
     {
         AManager.Update(gameUpdate);
 
@@ -135,24 +176,6 @@ namespace FaceEngineGUI
     void UIComponent::SetIntroTransition(Animations::Transition* introTransition)
     {
         AManager.IntroTransition = introTransition;
-    }
-
-    void UIComponent::AddChild(UIComponent* childComp)
-    {
-        Children.push_back(childComp);
-
-        if (childComp->Parent != nullptr)
-        {
-            childComp->Parent->RemoveChild(this);
-        }
-
-        childComp->Parent = this;
-    }
-
-    void UIComponent::RemoveChild(UIComponent* childComp)
-    {
-        //Children.erase(std::remove(Children.begin(), Children.end(), childComp), Children.end());
-        //childComp->Parent = nullptr;
     }
 
     UIComponent* UIComponent::GetParent() const

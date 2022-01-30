@@ -17,7 +17,7 @@ namespace FaceEngineGUI
         delete OutroTransition;
     }
 
-    void AnimationManager::Update(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate)
+    void AnimationManager::Update(FaceEngine::GameUpdate* gameUpdate)
     {   
         if (_activeTransition == nullptr)
         {

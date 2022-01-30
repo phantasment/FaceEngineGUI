@@ -6,8 +6,8 @@
 namespace FaceEngineGUI::Components
 {
     Slider::Slider(int x, int y, int railLength, int railHeight, int sliderWidth, int sliderHeight, 
-                   std::shared_ptr<FaceEngine::Graphics::Texture2D> sliderailTexture, 
-                   std::shared_ptr<FaceEngine::Graphics::Texture2D> sliderTexture, 
+                   FaceEngine::Graphics::Texture2D* sliderailTexture, 
+                   FaceEngine::Graphics::Texture2D* sliderTexture, 
                    FaceEngineGUI::UIComponent* parent) : FaceEngineGUI::UIComponent(x, y, railLength, railHeight, parent),
     sliderButtonBounds(x - (sliderWidth / 2), y + (railHeight / 2) - (sliderHeight / 2), sliderWidth, sliderHeight),
     sliderSourceRectangle(0, 0, sliderTexture->GetWidth(), sliderTexture->GetHeight() / 3)
@@ -21,7 +21,7 @@ namespace FaceEngineGUI::Components
 
     }
 
-    void Slider::UpdateState(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate)
+    void Slider::UpdateState(FaceEngine::GameUpdate* gameUpdate)
     {
         if (!focused)
         {
@@ -61,7 +61,7 @@ namespace FaceEngineGUI::Components
         return ((sliderButtonBounds.X + (sliderButtonBounds.Width / 2)) - Bounds.X) / Bounds.Width;
     }
 
-    void Slider::Update(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate)
+    void Slider::Update(FaceEngine::GameUpdate* gameUpdate)
     {
         UpdateState(gameUpdate);
 
@@ -82,7 +82,7 @@ namespace FaceEngineGUI::Components
         }
     }
 
-    void Slider::Draw(std::shared_ptr<FaceEngine::Graphics::SpriteRenderer> renderer)
+    void Slider::Draw(FaceEngine::Graphics::SpriteRenderer* renderer)
     {
         renderer->Draw(SliderailTexture, Bounds);
         renderer->Draw(SliderTexture, sliderButtonBounds, sliderSourceRectangle);

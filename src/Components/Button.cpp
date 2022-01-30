@@ -3,24 +3,24 @@
 
 namespace FaceEngineGUI::Components
 {
-    Button::Button(std::shared_ptr<FaceEngine::Graphics::Texture2D> texture, UIComponent* parent) : FaceEngineGUI::UIComponent(0, 0, 0, 0, parent)
+    Button::Button(FaceEngine::Graphics::Texture2D* texture, UIComponent* parent) : FaceEngineGUI::UIComponent(0, 0, 0, 0, parent)
     {
         Initialise(texture);
     }
 
-    Button::Button(int x, int y, int width, int height, std::shared_ptr<FaceEngine::Graphics::Texture2D> texture, FaceEngineGUI::UIComponent* parent) : FaceEngineGUI::UIComponent(x, y, width, height, parent)
+    Button::Button(int x, int y, int width, int height, FaceEngine::Graphics::Texture2D* texture, FaceEngineGUI::UIComponent* parent) : FaceEngineGUI::UIComponent(x, y, width, height, parent)
     {
         Initialise(texture);
     }
 
-    void Button::Initialise(std::shared_ptr<FaceEngine::Graphics::Texture2D> texture)
+    void Button::Initialise(FaceEngine::Graphics::Texture2D* texture)
     {
         Texture = texture;
         buttonState = FaceEngineGUI::Util::UIButtonState::NEUTRAL;
         sourceRectangle = FaceEngine::Math::Rectangle(0, 0, texture->GetWidth(), texture->GetHeight() / 3);
     }
 
-    void Button::UpdateButtonState(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate)
+    void Button::UpdateButtonState(FaceEngine::GameUpdate* gameUpdate)
     {
         if (!Bounds.Contains(gameUpdate->GetCursorPos()))
         {
@@ -48,13 +48,18 @@ namespace FaceEngineGUI::Components
         return buttonState;
     }
 
-    void Button::Update(std::shared_ptr<FaceEngine::GameUpdate> gameUpdate)
+    bool Button::IsClicked() const
+    {
+        return buttonState == FaceEngineGUI::Util::UIButtonState::CLICKED;
+    }
+
+    void Button::Update(FaceEngine::GameUpdate* gameUpdate)
     {
         UpdateButtonState(gameUpdate);
         FaceEngineGUI::UIComponent::Update(gameUpdate);
     }
 
-    void Button::Draw(std::shared_ptr<FaceEngine::Graphics::SpriteRenderer> renderer)
+    void Button::Draw(FaceEngine::Graphics::SpriteRenderer* renderer)
     {
         renderer->Draw(Texture, Bounds, sourceRectangle);
     }
