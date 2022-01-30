@@ -1,4 +1,5 @@
 #include "FaceEngineGUI/TextureDesign/NativeTexture.h"
+#include <memory>
 
 namespace FaceEngineGUI::TextureDesign
 {
@@ -21,7 +22,7 @@ namespace FaceEngineGUI::TextureDesign
         delete VisualEffect;
     }
 
-    std::shared_ptr<FaceEngine::Graphics::Texture2D> NativeTexture::Rasterise() //Fill -> Border + CornerEffect-> VisualEffect
+    FaceEngine::Graphics::Texture2D* NativeTexture::Rasterise() //Fill -> Border + CornerEffect-> VisualEffect
     {
         std::unique_ptr<char[]> imageData = std::make_unique<char[]>(Width * Height * 4);
 

@@ -117,7 +117,7 @@ namespace FaceEngineGUI::Components
             return;
         }
 
-        if (!Bounds.Contains(gameUpdate->GetCursorPos()) || !_extensionBounds.Contains(gameUpdate->GetCursorPos()))
+        if (!Bounds.Contains(gameUpdate->GetCursorPos()) && !_extensionBounds.Contains(gameUpdate->GetCursorPos()))
         {
             _extended = false;
         }

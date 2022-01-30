@@ -6,7 +6,6 @@
 #include "FaceEngineGUI/TextureDesign/CornerEffect.h"
 #include "FaceEngineGUI/TextureDesign/VisualEffect.h"
 #include "FaceEngine/Graphics/Texture2D.h"
-#include <memory>
 
 namespace FaceEngineGUI::TextureDesign
 {
@@ -24,7 +23,7 @@ namespace FaceEngineGUI::TextureDesign
         NativeTexture();
         ~NativeTexture();
 
-        std::shared_ptr<FaceEngine::Graphics::Texture2D> Rasterise();
+        FaceEngine::Graphics::Texture2D* Rasterise();
     };
 }
 
