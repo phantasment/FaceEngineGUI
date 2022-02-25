@@ -1,3 +1,2 @@
-.vscode/
-build-win64/
-build/
+/.vscode
+/build
