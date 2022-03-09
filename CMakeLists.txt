@@ -44,10 +44,10 @@ set(FACE_ENGINE_GUI_SRC_FILES
 add_library(FaceEngineGUI SHARED ${FACE_ENGINE_GUI_SRC_FILES})
 add_library(FaceEngineGUIStatic STATIC ${FACE_ENGINE_GUI_SRC_FILES})
 
-target_include_directories(FaceEngineGUI PRIVATE include ${FACEENGINE_INCLUDE_DIRS} ${GLFW_INCLUDE_DIRS} ${ZLIB_INCLUDE_DIRS})
-target_include_directories(FaceEngineGUIStatic PRIVATE include ${FACEENGINE_INCLUDE_DIRS} ${GLFW_INCLUDE_DIRS} ${ZLIB_INCLUDE_DIRS})
-target_link_libraries(FaceEngineGUI PRIVATE ${ZLIB_LIBRARIES} ${GLFW_LIBRARIES} ${FACEENGINE_LIBRARIES})
-target_link_libraries(FaceEngineGUIStatic PRIVATE ${ZLIB_LIBRARIES} ${GLFW_LIBRARIES} ${FACEENGINE_LIBRARIES})
+target_include_directories(FaceEngineGUI PUBLIC include ${FACEENGINE_INCLUDE_DIRS} ${GLFW_INCLUDE_DIRS} ${ZLIB_INCLUDE_DIRS})
+target_include_directories(FaceEngineGUIStatic PUBLIC include ${FACEENGINE_INCLUDE_DIRS} ${GLFW_INCLUDE_DIRS} ${ZLIB_INCLUDE_DIRS})
+target_link_libraries(FaceEngineGUI PRIVATE ${ZLIB_LIBRARIES} glfw ${FACEENGINE_LIBRARIES})
+target_link_libraries(FaceEngineGUIStatic PRIVATE ${ZLIB_LIBRARIES} glfw ${FACEENGINE_LIBRARIES})
 
 set_target_properties(FaceEngineGUI PROPERTIES OUTPUT_NAME FaceEngineGUI)
 set_target_properties(FaceEngineGUIStatic PROPERTIES OUTPUT_NAME FaceEngineGUIStatic)
