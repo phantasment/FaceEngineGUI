@@ -18,9 +18,18 @@ namespace FaceEngineGUI::Components
         _caretTexture = typingBarTexture;
 
         // Boundary Variables
-        _textBounds = FaceEngine::Math::Rectangle(x, y, width, height); // padding implemented here
         _sourceBounds = FaceEngine::Math::Rectangle(0, 0, _backgroundTexture->GetWidth(), _backgroundTexture->GetHeight() / 3);
-        _caretBounds = FaceEngine::Math::Rectangle(x, y, 5, height);
+
+        if (parent == nullptr)
+        {
+            _textBounds = FaceEngine::Math::Rectangle(x, y, width, height); // padding implemented here
+            _caretBounds = FaceEngine::Math::Rectangle(x, y, 3, height);
+        }
+        else
+        {
+            _textBounds = FaceEngine::Math::Rectangle(parent->GetBounds().X + x, parent->GetBounds().Y + y, width, height); // padding implemented here
+            _caretBounds = FaceEngine::Math::Rectangle(parent->GetBounds().X + x, parent->GetBounds().Y + y, 3, height);
+        }
 
         // Caret Variables
         _caretBlinkDuration = 0.5;
@@ -42,6 +51,11 @@ namespace FaceEngineGUI::Components
 
     void Textbox::Update(FaceEngine::GameUpdate* gameUpdate)
     {
+        if (!enabled)
+        {
+            return;
+        }
+        
         UpdateStatus(gameUpdate);
 
         if (_focussed)
@@ -58,6 +72,11 @@ namespace FaceEngineGUI::Components
 
     void Textbox::Draw(FaceEngine::Graphics::SpriteRenderer* renderer)
     {
+        if (!enabled)
+        {
+            return;
+        }
+        
         DrawBackground(renderer);
         DrawText(renderer);
         DrawCaret(renderer);
@@ -192,5 +211,20 @@ namespace FaceEngineGUI::Components
         {
             renderer->Draw(_caretTexture, _caretBounds);
         }
+    }
+
+    void Textbox::SetX(FaceEngineGUI::Transforms::UITranslation* xTranslation)
+    {
+        FaceEngineGUI::UIComponent::SetX(xTranslation);
+
+        _textBounds.X = Bounds.X;
+    }
+
+    void Textbox::SetY(FaceEngineGUI::Transforms::UITranslation* yTranslation)
+    {
+        FaceEngineGUI::UIComponent::SetY(yTranslation);
+
+        _textBounds.Y = Bounds.Y;
+        _caretBounds.Y = Bounds.Y;
     }
 }

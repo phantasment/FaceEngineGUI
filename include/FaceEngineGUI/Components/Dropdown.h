@@ -5,15 +5,20 @@
 #include "FaceEngine/Math/Rectangle.h"
 #include "FaceEngine/Graphics/Texture2D.h"
 #include "FaceEngineGUI/Util/UIButtonState.h"
+#include "FaceEngine/Math/Vector2.h"
 #include <list>
 
 namespace FaceEngineGUI::Components
 {
     class Dropdown : public UIComponent
     {
-    public:
+    private:
+        // Unimplemented
+        FaceEngine::Math::Vector2 _padding;
+
         int elementWidth = 0;
         bool _extended = false;
+        bool _closedLastCycle = false;
 
         FaceEngine::Math::Rectangle _extensionBounds;
         FaceEngine::Math::Rectangle _buttonSourceRectangle;
@@ -26,7 +31,7 @@ namespace FaceEngineGUI::Components
         void UpdateButtonState(FaceEngine::GameUpdate* gameUpdate);
         void UpdateExtensionState(FaceEngine::GameUpdate* gameUpdate);
 
-    //public:
+    public:
         Dropdown(int x, int y, int width, int height, FaceEngine::Graphics::Texture2D* buttonTextureAtlas, FaceEngine::Graphics::Texture2D* extensionBackgroundTexture, FaceEngineGUI::UIComponent* parent = nullptr);
         ~Dropdown();
 

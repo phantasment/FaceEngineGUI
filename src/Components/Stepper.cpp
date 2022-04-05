@@ -64,6 +64,11 @@ namespace FaceEngineGUI::Components
 
     void Stepper::Update(FaceEngine::GameUpdate* gameUpdate)
     {
+        if (!enabled)
+        {
+            return;
+        }
+        
         UpdateState(gameUpdate);
 
         if (focused)
@@ -86,6 +91,11 @@ namespace FaceEngineGUI::Components
 
     void Stepper::Draw(FaceEngine::Graphics::SpriteRenderer* renderer)
     {
+        if (!enabled)
+        {
+            return;
+        }
+        
         renderer->Draw(StepperRailTexture, Bounds);
         renderer->Draw(StepperButtonTexture, stepperButtonBounds, stepperButtonSourceRect);
     }

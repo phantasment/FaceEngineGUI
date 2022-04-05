@@ -20,6 +20,11 @@ namespace FaceEngineGUI::Components
 
     void Sprite::Draw(FaceEngine::Graphics::SpriteRenderer* renderer)
     {
+        if (!enabled)
+        {
+            return;
+        }
+        
         renderer->Draw(Texture, Bounds);
     }
 }

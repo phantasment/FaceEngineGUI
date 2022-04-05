@@ -21,6 +21,7 @@ namespace FaceEngineGUI
             UIComponent* Parent;
 
             bool IsVisible;
+            bool enabled = true;
 
             UIComponent(UIComponent* parent = nullptr);
             UIComponent(const int width, const int height, UIComponent* parent = nullptr);
@@ -41,6 +42,10 @@ namespace FaceEngineGUI
             void AddChild(UIComponent* childComp);
             void RemoveChild(UIComponent* childComp);
 
+            void Enable();
+            void Disable();
+            bool IsEnabled() const;
+
             UIComponent* GetParent() const;
             FaceEngine::Math::Rectangle GetBounds() const;
             int GetX() const;
@@ -54,10 +59,10 @@ namespace FaceEngineGUI
             int GetWidth() const;
             int GetHeight() const;
 
-            void SetX(FaceEngineGUI::Transforms::UITranslation* xTranslation);
+            virtual void SetX(FaceEngineGUI::Transforms::UITranslation* xTranslation);
             void SetMinX(FaceEngineGUI::Transforms::UITranslation* xTranslation);
             void SetMaxX(FaceEngineGUI::Transforms::UITranslation* xTranslation);
-            void SetY(FaceEngineGUI::Transforms::UITranslation* yTranslation);
+            virtual void SetY(FaceEngineGUI::Transforms::UITranslation* yTranslation);
             void SetMinY(FaceEngineGUI::Transforms::UITranslation* yTranslation);
             void SetMaxY(FaceEngineGUI::Transforms::UITranslation* yTranslation);
 

@@ -9,21 +9,25 @@ Component Creation:
 Components:
     Regular
     - GIF (need better name)
+    - Scrollbar (vertical and horizontal)
 
     Compound
     - Dropdown/Dropdown button
-    - Progress Bar
+    - Progress Bar (vertical and horizontal)
     - Date/Time picker
     - Tree (file browser)
     - Colour picker
     - Curve Picker (like bezier/polynomial etc...)
+
+    Dialog Box
+    - Allow for resizing within min/max limits.
 
     Text
     - Label
     - Textbox
     - Textfield
 
-    Container
+    Containers
     - Container
     - Accordion
     - Carousel
@@ -37,6 +41,13 @@ Animations:
     - Animations specific to components (dropdown animation for extension)
     - Play/Pause/Stop transitions
 
+Dropdowns:
+    - dropdown extensions larger than button itself
+    - padding
+    - drop shadow effect for extension
+    - max height with scrollbar
+    - extend on hover rather than click
+
 Random:
     - Add easy way to centre components
     - Right click functionality to all components.
@@ -48,6 +59,7 @@ Random:
     - Conform all code to standard.
     - Add all setters/getters of position/scale to transform manager of uicomponent.
     - Add max height for dropdown extension with scrollbar.
+    - Add vertical slider/stepper
 
 ----- BUGS -----
 

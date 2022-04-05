@@ -55,12 +55,22 @@ namespace FaceEngineGUI::Components
 
     void Button::Update(FaceEngine::GameUpdate* gameUpdate)
     {
+        if (!enabled)
+        {
+            return;
+        }
+
         UpdateButtonState(gameUpdate);
         FaceEngineGUI::UIComponent::Update(gameUpdate);
     }
 
     void Button::Draw(FaceEngine::Graphics::SpriteRenderer* renderer)
     {
+        if (!enabled)
+        {
+            return;
+        }
+        
         renderer->Draw(Texture, Bounds, sourceRectangle);
     }
 }

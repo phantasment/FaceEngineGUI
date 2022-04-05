@@ -22,6 +22,9 @@ set(FACE_ENGINE_GUI_SRC_FILES
     src/Components/Button.cpp
     src/Components/Checkbox.cpp
     src/Components/Dropdown.cpp
+    src/Components/DialogBox.cpp
+    src/Components/Label.cpp
+    src/Components/Textbox.cpp
     src/Components/Slider.cpp
     src/Components/Sprite.cpp
     src/Components/Stepper.cpp
@@ -42,7 +45,9 @@ set(FACE_ENGINE_GUI_SRC_FILES
 )
 
 add_library(FaceEngineGUI SHARED ${FACE_ENGINE_GUI_SRC_FILES})
+target_compile_options(FaceEngineGUI PRIVATE -O3)
 add_library(FaceEngineGUIStatic STATIC ${FACE_ENGINE_GUI_SRC_FILES})
+target_compile_options(FaceEngineGUIStatic PRIVATE -O3)
 
 target_include_directories(FaceEngineGUI PRIVATE include "${GLFW_INCLUDE_DIRS}" "${ZLIB_INCLUDE_DIRS}" "${FACEENGINE_INCLUDE_DIRS}")
 target_include_directories(FaceEngineGUIStatic PRIVATE include "${GLFW_INCLUDE_DIRS}" "${ZLIB_INCLUDE_DIRS}" "${FACEENGINE_INCLUDE_DIRS}")

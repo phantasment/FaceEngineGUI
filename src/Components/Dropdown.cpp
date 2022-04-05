@@ -49,29 +49,44 @@ namespace FaceEngineGUI::Components
 
     void Dropdown::Update(FaceEngine::GameUpdate* gameUpdate)
     {
-        // Update Button and State
-
-        UpdateButtonState(gameUpdate);
-        UpdateExtensionState(gameUpdate);
-
+        if (!enabled)
+        {
+            return;
+        }
+        
         // Update Elements
 
-        if (_extended)
+        if (_extended || _closedLastCycle)
         {
             for (int i = 0; i < _elements.size(); ++i)
             {
                 _elements[i]->Update(gameUpdate);
             }
+
+            if (_closedLastCycle)
+            {
+                _closedLastCycle = false;
+            }
         }
+
+        // Update Button and State
+
+        UpdateExtensionState(gameUpdate);
+        UpdateButtonState(gameUpdate);
     }
 
     void Dropdown::Draw(FaceEngine::Graphics::SpriteRenderer* renderer)
     {
+        if (!enabled)
+        {
+            return;
+        }
+        
         // Draw Button
 
         renderer->Draw(_buttonTextureAtlas, Bounds, _buttonSourceRectangle);
 
-        // Draw Extension
+        // Draw Extension and Elements
 
         if (!_extended)
         {
@@ -112,14 +127,10 @@ namespace FaceEngineGUI::Components
 
     void Dropdown::UpdateExtensionState(FaceEngine::GameUpdate* gameUpdate)
     {
-        if (!_extended || !gameUpdate->IsMouseReleased(0))
-        {
-            return;
-        }
-
-        if (!Bounds.Contains(gameUpdate->GetCursorPos()) && !_extensionBounds.Contains(gameUpdate->GetCursorPos()))
+        if (_extended && gameUpdate->IsMouseReleased(0))
         {
             _extended = false;
+            _closedLastCycle = true;
         }
     }
 }

@@ -3,7 +3,7 @@
 
 #include "FaceEngineGUI/UIComponent.h"
 #include "FaceEngine/Graphics/TextureFont.h"
-#include "FaceEngineGUI/Util/TypingSession.h"
+#include "FaceEngine/TypingSession.h"
 #include "FaceEngineGUI/Util/UIButtonState.h"
 
 // TODO: padding
@@ -17,6 +17,7 @@ namespace FaceEngineGUI::Components
         FaceEngineGUI::Util::TypingSession _typingSession;
         FaceEngineGUI::Util::UIButtonState _state;
         bool _focussed;
+        bool _allowOverflow;
 
         // Texture Variables
         FaceEngine::Graphics::Texture2D* _caretTexture;
@@ -60,6 +61,9 @@ namespace FaceEngineGUI::Components
 
         void Update(FaceEngine::GameUpdate* gameUpdate) override;
         void Draw(FaceEngine::Graphics::SpriteRenderer* renderer) override;
+
+        void SetX(FaceEngineGUI::Transforms::UITranslation* xTranslation) override;
+        void SetY(FaceEngineGUI::Transforms::UITranslation* xTranslation) override;
     };
 }
 

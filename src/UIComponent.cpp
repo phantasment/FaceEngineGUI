@@ -86,11 +86,19 @@ namespace FaceEngineGUI
             }
         }
         
-        //TODO: refresh children.
+        for (int i = 0; i < Children.size(); ++i)
+        {
+            Children[i]->RefreshComponent();
+        }
     }
 
     void UIComponent::Update(FaceEngine::GameUpdate* gameUpdate)
     {
+        if (!enabled)
+        {
+            return;
+        }
+
         UpdateAnimations(gameUpdate);
 
         //TODO: update children.
@@ -98,6 +106,11 @@ namespace FaceEngineGUI
 
     void UIComponent::Draw(FaceEngine::Graphics::SpriteRenderer* renderer)
     {
+        if (!enabled)
+        {
+            return;
+        }
+        
         //TODO: draw children.
     }
 
@@ -139,6 +152,31 @@ namespace FaceEngineGUI
         }
 
         std::cout << Children.size() << std::endl;
+    }
+
+    void UIComponent::Enable()
+    {
+        enabled = true;
+
+        for (int i = 0; i < Children.size(); ++i)
+        {
+            Children[i]->Enable();
+        }
+    }
+
+    void UIComponent::Disable()
+    {
+        enabled = false;
+
+        for (int i = 0; i < Children.size(); ++i)
+        {
+            Children[i]->Disable();
+        }
+    }
+
+    bool UIComponent::IsEnabled() const
+    {
+        return enabled;
     }
     
     void UIComponent::InitialiseAnimations()

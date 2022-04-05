@@ -24,6 +24,8 @@ namespace FaceEngineGUI::TextureDesign
 
     FaceEngine::Graphics::Texture2D* NativeTexture::Rasterise() //Fill -> Border + CornerEffect-> VisualEffect
     {
+        // TODO - fix
+
         std::unique_ptr<char[]> imageData = std::make_unique<char[]>(Width * Height * 4);
 
         // Populating pixel data from Fill.

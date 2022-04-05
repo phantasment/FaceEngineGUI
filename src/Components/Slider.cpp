@@ -63,6 +63,11 @@ namespace FaceEngineGUI::Components
 
     void Slider::Update(FaceEngine::GameUpdate* gameUpdate)
     {
+        if (!enabled)
+        {
+            return;
+        }
+        
         UpdateState(gameUpdate);
 
         if (focused)
@@ -84,6 +89,11 @@ namespace FaceEngineGUI::Components
 
     void Slider::Draw(FaceEngine::Graphics::SpriteRenderer* renderer)
     {
+        if (!enabled)
+        {
+            return;
+        }
+        
         renderer->Draw(SliderailTexture, Bounds);
         renderer->Draw(SliderTexture, sliderButtonBounds, sliderSourceRectangle);
     }

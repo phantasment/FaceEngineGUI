@@ -68,12 +68,22 @@ namespace FaceEngineGUI::Components
 
     void Checkbox::Update(FaceEngine::GameUpdate* gameUpdate)
     {
+        if (!enabled)
+        {
+            return;
+        }
+        
         UpdateState(gameUpdate);
         FaceEngineGUI::UIComponent::Update(gameUpdate);
     }
 
     void Checkbox::Draw(FaceEngine::Graphics::SpriteRenderer* renderer)
     {
+        if (!enabled)
+        {
+            return;
+        }
+        
         renderer->Draw(Texture, Bounds, sourceRectangle);
     }
 }
