@@ -2,7 +2,7 @@
 #define FACEENGINEGUI_COMPONENTS_TEXTBOX_H
 
 #include "FaceEngineGUI/UIComponent.h"
-#include "FaceEngine/Graphics/TextureFont.h"
+#include "FaceEngine/TextureFont.h"
 #include "FaceEngine/TypingSession.h"
 #include "FaceEngineGUI/Util/UIButtonState.h"
 
@@ -14,19 +14,19 @@ namespace FaceEngineGUI::Components
     {
     private:
         // Textbox Variables
-        FaceEngineGUI::Util::TypingSession _typingSession;
+        FaceEngine::TypingSession _typingSession;
         FaceEngineGUI::Util::UIButtonState _state;
         bool _focussed;
         bool _allowOverflow;
 
         // Texture Variables
-        FaceEngine::Graphics::Texture2D* _caretTexture;
-        FaceEngine::Graphics::Texture2D* _backgroundTexture;
+        FaceEngine::Texture2D* _caretTexture;
+        FaceEngine::Texture2D* _backgroundTexture;
 
         // Boundary Variables
-        FaceEngine::Math::Rectangle _sourceBounds;
-        FaceEngine::Math::Rectangle _textBounds;
-        FaceEngine::Math::Rectangle _caretBounds;
+        FaceEngine::Rectanglef _sourceBounds;
+        FaceEngine::Rectanglef _textBounds;
+        FaceEngine::Rectanglef _caretBounds;
 
         // Caret Variables
         float _caretBlinkDuration;
@@ -34,8 +34,8 @@ namespace FaceEngineGUI::Components
         bool _caretVisible;
 
         // Text Variables
-        FaceEngine::Graphics::TextureFont* _font;
-        FaceEngine::Graphics::Colour _fontColour;
+        FaceEngine::TextureFont* _font;
+        FaceEngine::Colour _fontColour;
         float _textScale;
 
         // Methods
@@ -51,19 +51,22 @@ namespace FaceEngineGUI::Components
         void SetCaretPosition(const int insertPosition);
         void InsertAtMouse(FaceEngine::GameUpdate* gameUpdate);
 
-        void DrawBackground(FaceEngine::Graphics::SpriteRenderer* renderer);
-        void DrawText(FaceEngine::Graphics::SpriteRenderer* renderer);
-        void DrawCaret(FaceEngine::Graphics::SpriteRenderer* renderer);
+        void DrawBackground(FaceEngine::SpriteBatcher* renderer);
+        void DrawText(FaceEngine::SpriteBatcher* renderer);
+        void DrawCaret(FaceEngine::SpriteBatcher* renderer);
 
     public:
-        Textbox(const int x, const int y, const int width, const int height, FaceEngine::Graphics::Texture2D* texture, FaceEngine::Graphics::Texture2D* typingBarTexture, FaceEngine::Graphics::TextureFont* font, FaceEngine::Graphics::Colour fontColour, FaceEngineGUI::UIComponent* parent = nullptr);
+        Textbox(const int x, const int y, const int width, const int height, FaceEngine::Texture2D* texture, FaceEngine::Texture2D* typingBarTexture, FaceEngine::TextureFont* font, FaceEngine::Colour fontColour, FaceEngineGUI::UIComponent* parent = nullptr);
         ~Textbox();
 
         void Update(FaceEngine::GameUpdate* gameUpdate) override;
-        void Draw(FaceEngine::Graphics::SpriteRenderer* renderer) override;
+        void Draw(FaceEngine::SpriteBatcher* renderer) override;
 
-        void SetX(FaceEngineGUI::Transforms::UITranslation* xTranslation) override;
-        void SetY(FaceEngineGUI::Transforms::UITranslation* xTranslation) override;
+        void SetX(FaceEngineGUI::UITranslation* xTranslation) override;
+        void SetY(FaceEngineGUI::UITranslation* xTranslation) override;
+        void SetPadding(int paddingX, int paddingY);
+
+        bool IsFocussed() const;
     };
 }
 

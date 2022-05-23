@@ -5,9 +5,9 @@
 #include "FaceEngineGUI/TextureDesign/Border.h"
 #include "FaceEngineGUI/TextureDesign/CornerEffect.h"
 #include "FaceEngineGUI/TextureDesign/VisualEffect.h"
-#include "FaceEngine/Graphics/Texture2D.h"
+#include "FaceEngine/Texture2D.h"
 
-namespace FaceEngineGUI::TextureDesign
+namespace FaceEngineGUI
 {
     class NativeTexture
     {
@@ -15,15 +15,15 @@ namespace FaceEngineGUI::TextureDesign
         int Width;
         int Height;
 
-        FaceEngineGUI::TextureDesign::Fill* Fill;
-        FaceEngineGUI::TextureDesign::Border* Border;
-        FaceEngineGUI::TextureDesign::CornerEffect* CornerEffect;
-        FaceEngineGUI::TextureDesign::VisualEffect* VisualEffect; // TODO: allow for more than one visual effect, maybe corner effects too.
+        FaceEngineGUI::Fill* Fill;
+        FaceEngineGUI::Border* Border;
+        FaceEngineGUI::CornerEffect* CornerEffect;
+        FaceEngineGUI::VisualEffect* VisualEffect; // TODO: allow for more than one visual effect, maybe corner effects too.
 
         NativeTexture();
         ~NativeTexture();
 
-        FaceEngine::Graphics::Texture2D* Rasterise();
+        FaceEngine::Texture2D* Rasterise();
     };
 }
 

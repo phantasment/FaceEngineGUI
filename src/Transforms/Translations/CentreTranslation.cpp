@@ -1,7 +1,7 @@
 #include "FaceEngineGUI/Transforms/Translations/CentreTranslation.h"
 #include <iostream>
 
-namespace FaceEngineGUI::Transforms::Translations
+namespace FaceEngineGUI::Translations
 {
     CentreTranslation::CentreTranslation()
     {
@@ -13,7 +13,7 @@ namespace FaceEngineGUI::Transforms::Translations
         MeasureFrom = referencePoint;
     }
 
-    int CentreTranslation::TranslateX(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const
+    int CentreTranslation::TranslateX(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const
     {
         switch (MeasureFrom)
         {
@@ -26,7 +26,7 @@ namespace FaceEngineGUI::Transforms::Translations
         }
     }
 
-    int CentreTranslation::TranslateY(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const
+    int CentreTranslation::TranslateY(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const
     {
         switch (MeasureFrom)
         {

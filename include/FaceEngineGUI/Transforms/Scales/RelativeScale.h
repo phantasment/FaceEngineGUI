@@ -4,9 +4,9 @@
 #include "FaceEngineGUI/Transforms/UIScale.h"
 #include "FaceEngine/Math/Rectangle.h"
 
-namespace FaceEngineGUI::Transforms::Scales
+namespace FaceEngineGUI::Scales
 {
-    class RelativeScale : public FaceEngineGUI::Transforms::UIScale
+    class RelativeScale : public FaceEngineGUI::UIScale
     {
         public:
             float ScaleFactor;
@@ -15,8 +15,8 @@ namespace FaceEngineGUI::Transforms::Scales
             RelativeScale(const float translationFactor);
             ~RelativeScale() override;
 
-            int ScaleWidth(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const override;
-            int ScaleHeight(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const override;
+            int ScaleWidth(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const override;
+            int ScaleHeight(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const override;
             
             void Print() const override;
     };

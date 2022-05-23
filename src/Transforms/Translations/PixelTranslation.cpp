@@ -1,6 +1,6 @@
 #include "FaceEngineGUI/Transforms/Translations/PixelTranslation.h"
 
-namespace FaceEngineGUI::Transforms::Translations
+namespace FaceEngineGUI::Translations
 {
     PixelTranslation::PixelTranslation()
     {
@@ -20,7 +20,7 @@ namespace FaceEngineGUI::Transforms::Translations
         MeasureFrom = referencePoint;
     }
 
-    int PixelTranslation::TranslateX(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const
+    int PixelTranslation::TranslateX(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const
     {
         switch (MeasureFrom)
         {
@@ -33,7 +33,7 @@ namespace FaceEngineGUI::Transforms::Translations
         }
     }
 
-    int PixelTranslation::TranslateY(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const
+    int PixelTranslation::TranslateY(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const
     {
         switch (MeasureFrom)
         {

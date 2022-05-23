@@ -3,36 +3,36 @@
 
 #include "FaceEngineGUI/UIComponent.h"
 #include "FaceEngineGUI/Util/UIButtonState.h"
-#include "FaceEngine/Graphics/Texture2D.h"
+#include "FaceEngine/Texture2D.h"
 #include "FaceEngineGUI/Components/Button.h"
 #include "FaceEngine/GameUpdate.h"
 
-namespace FaceEngineGUI::Components
+namespace FaceEngineGUI
 {
     class Slider : public FaceEngineGUI::UIComponent
     {
     private:
-        FaceEngine::Math::Rectangle sliderButtonBounds;
-        FaceEngine::Math::Rectangle sliderSourceRectangle;
+        FaceEngine::Rectanglef sliderButtonBounds;
+        FaceEngine::Rectanglef sliderSourceRectangle;
         FaceEngineGUI::Util::UIButtonState state;
         bool focused;
 
         void UpdateState(FaceEngine::GameUpdate* gameUpdate);
 
     public:
-        FaceEngine::Graphics::Texture2D* SliderailTexture;
-        FaceEngine::Graphics::Texture2D* SliderTexture;
+        FaceEngine::Texture2D* SliderailTexture;
+        FaceEngine::Texture2D* SliderTexture;
 
         Slider(int x, int y, int railLength, int railHeight, int sliderWidth, int sliderHeight, 
-               FaceEngine::Graphics::Texture2D* sliderailTexture, 
-               FaceEngine::Graphics::Texture2D* sliderTexture, 
+               FaceEngine::Texture2D* sliderailTexture, 
+               FaceEngine::Texture2D* sliderTexture, 
                FaceEngineGUI::UIComponent* parent = nullptr);
         ~Slider();
 
         float GetValue() const;
 
         void Update(FaceEngine::GameUpdate* gameUpdate) override;
-        void Draw(FaceEngine::Graphics::SpriteRenderer* renderer) override;
+        void Draw(FaceEngine::SpriteBatcher* renderer) override;
     };
 }
 

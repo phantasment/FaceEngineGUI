@@ -1,6 +1,6 @@
 #include "FaceEngineGUI/Transforms/Scales/RelativeScale.h"
 
-namespace FaceEngineGUI::Transforms::Scales
+namespace FaceEngineGUI::Scales
 {
     RelativeScale::RelativeScale()
     {
@@ -17,12 +17,12 @@ namespace FaceEngineGUI::Transforms::Scales
 
     }
 
-    int RelativeScale::ScaleWidth(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const
+    int RelativeScale::ScaleWidth(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const
     {
         return parentBounds.Width * ScaleFactor;
     }
 
-    int RelativeScale::ScaleHeight(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const
+    int RelativeScale::ScaleHeight(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const
     {
         return parentBounds.Height * ScaleFactor;
     }

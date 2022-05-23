@@ -5,7 +5,7 @@
 #include "FaceEngineGUI/Transforms/MeasurementPoint.h"
 #include <iostream>
 
-namespace FaceEngineGUI::Transforms
+namespace FaceEngineGUI
 {
     class UITranslation
     {
@@ -14,8 +14,8 @@ namespace FaceEngineGUI::Transforms
 
             virtual ~UITranslation() { }
 
-            virtual int TranslateX(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const = 0;
-            virtual int TranslateY(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const = 0;
+            virtual int TranslateX(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const = 0;
+            virtual int TranslateY(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const = 0;
 
             virtual void Print() const = 0;
     };

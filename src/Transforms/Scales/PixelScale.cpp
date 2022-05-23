@@ -1,7 +1,7 @@
 #include "FaceEngineGUI/Transforms/Scales/PixelScale.h"
 #include <iostream>
 
-namespace FaceEngineGUI::Transforms::Scales
+namespace FaceEngineGUI::Scales
 {
     PixelScale::PixelScale()
     {
@@ -18,12 +18,12 @@ namespace FaceEngineGUI::Transforms::Scales
         
     }
 
-    int PixelScale::ScaleWidth(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const
+    int PixelScale::ScaleWidth(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const
     {
         return ScaleFactor;
     }
 
-    int PixelScale::ScaleHeight(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const
+    int PixelScale::ScaleHeight(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const
     {
         return ScaleFactor;
     }

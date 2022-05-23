@@ -2,7 +2,7 @@
 #include "FaceEngineGUI/TextureDesign/Fills/SolidFill.h"
 #include "FaceEngineGUI/TextureDesign/Fills/LinearGradientFill.h"
 
-namespace FaceEngineGUI::TextureDesign
+namespace FaceEngineGUI
 {
     NativeTexture TextureFactory::CreateSolidFill(const int width, const int height, const ColourScheme& colourScheme)
     {
@@ -11,14 +11,14 @@ namespace FaceEngineGUI::TextureDesign
         nativeTexture.Width = width;
         nativeTexture.Height = height;
 
-        FaceEngine::Graphics::Colour fill = colourScheme.GetBackgroundColour();
+        FaceEngine::Colour fill = colourScheme.GetBackgroundColour();
 
         nativeTexture.Fill = new Fills::SolidFill(fill);
 
         return nativeTexture;
     }
 
-    NativeTexture TextureFactory::CreateSolidFill(const int width, const int height, const FaceEngine::Graphics::Colour& fillColour)
+    NativeTexture TextureFactory::CreateSolidFill(const int width, const int height, const FaceEngine::Colour& fillColour)
     {
         NativeTexture nativeTexture = NativeTexture();
 
@@ -29,7 +29,7 @@ namespace FaceEngineGUI::TextureDesign
         return nativeTexture;
     }
 
-    NativeTexture TextureFactory::CreateLinearGradientFill(const int width, const int height, const FaceEngine::Graphics::Colour& startColour, const FaceEngine::Graphics::Colour& endColour)
+    NativeTexture TextureFactory::CreateLinearGradientFill(const int width, const int height, const FaceEngine::Colour& startColour, const FaceEngine::Colour& endColour)
     {
         NativeTexture nativeTexture = NativeTexture();
 

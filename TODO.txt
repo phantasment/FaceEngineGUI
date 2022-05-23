@@ -60,6 +60,7 @@ Random:
     - Add all setters/getters of position/scale to transform manager of uicomponent.
     - Add max height for dropdown extension with scrollbar.
     - Add vertical slider/stepper
+    - Add different types of bounds (i.e., circle, rectangle, polygonal) and composite bound object to contain complex bounds.
 
 ----- BUGS -----
 

@@ -1,9 +1,9 @@
 #include "FaceEngineGUI/Components/Label.h"
 #include <iostream>
 
-namespace FaceEngineGUI::Components
+namespace FaceEngineGUI
 {
-    Label::Label(int x, int y, int width, int height, std::string text, FaceEngine::Graphics::TextureFont* font, FaceEngine::Graphics::Colour fontColour, FaceEngineGUI::UIComponent* parent) : FaceEngineGUI::UIComponent(x, y, width, height, parent)
+    Label::Label(int x, int y, int width, int height, std::string text, FaceEngine::TextureFont* font, FaceEngine::Colour fontColour, FaceEngineGUI::UIComponent* parent) : FaceEngineGUI::UIComponent(x, y, width, height, parent)
     {
         _text = text;
         _font = font;
@@ -11,11 +11,11 @@ namespace FaceEngineGUI::Components
 
         if (_font != nullptr)
         {
-            _textScale = Bounds.Height / ((_font->GetAscender() + abs(_font->GetDescender())) / 64.0);
+            _textScale = Bounds.Height / _font->MeasureString("M").Y;
         }
     }
 
-    Label::Label(int width, int height, std::string text, FaceEngine::Graphics::TextureFont* font, FaceEngine::Graphics::Colour fontColour, FaceEngineGUI::UIComponent* parent) : FaceEngineGUI::UIComponent(0, 0, width, height, parent)
+    Label::Label(int width, int height, std::string text, FaceEngine::TextureFont* font, FaceEngine::Colour fontColour, FaceEngineGUI::UIComponent* parent) : FaceEngineGUI::UIComponent(0, 0, width, height, parent)
     {
         _text = text;
         _font = font;
@@ -23,7 +23,7 @@ namespace FaceEngineGUI::Components
 
         if (_font != nullptr)
         {
-            _textScale = Bounds.Height / ((_font->GetAscender() + abs(_font->GetDescender())) / 64.0);
+            _textScale = Bounds.Height / _font->MeasureString("M").Y;
         }
     }
 
@@ -32,10 +32,10 @@ namespace FaceEngineGUI::Components
 
     }
 
-    void Label::SetFont(FaceEngine::Graphics::TextureFont* font)
+    void Label::SetFont(FaceEngine::TextureFont* font)
     {
         _font = font;
-        _textScale = Bounds.Height / ((_font->GetAscender() + abs(_font->GetDescender())) / 64.0);
+        _textScale = Bounds.Height / _font->MeasureString("M").Y;
     }
 
     void Label::SetText(std::string text)
@@ -43,7 +43,7 @@ namespace FaceEngineGUI::Components
         _text = text;
     }
 
-    void Label::Draw(FaceEngine::Graphics::SpriteRenderer* renderer)
+    void Label::Draw(FaceEngine::SpriteBatcher* renderer)
     {
         if (!enabled)
         {
@@ -55,6 +55,6 @@ namespace FaceEngineGUI::Components
             return;
         }
         
-        renderer->Draw(_font, _text, Bounds.GetPosition(), _fontColour, _textScale);
+        renderer->DrawString(_font, _text, Bounds.GetPosition(), _fontColour, _textScale);
     }
 }

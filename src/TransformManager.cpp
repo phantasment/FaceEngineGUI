@@ -2,7 +2,7 @@
 
 namespace FaceEngineGUI
 {
-    TransformManager::TransformManager(FaceEngineGUI::Transforms::UITranslation* xTranslation, FaceEngineGUI::Transforms::UITranslation* yTranslation, FaceEngineGUI::Transforms::UIScale* widthScale, FaceEngineGUI::Transforms::UIScale* heightScale)
+    TransformManager::TransformManager(FaceEngineGUI::UITranslation* xTranslation, FaceEngineGUI::UITranslation* yTranslation, FaceEngineGUI::UIScale* widthScale, FaceEngineGUI::UIScale* heightScale)
     {
         XTranslation = xTranslation;
         MinXTranslation = nullptr;
@@ -37,7 +37,7 @@ namespace FaceEngineGUI
         delete MaxHeightScale;
     }
 
-    int TransformManager::GetX(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const
+    int TransformManager::GetX(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const
     {
         int value = XTranslation->TranslateX(compBounds, parentBounds);
 
@@ -64,7 +64,7 @@ namespace FaceEngineGUI
         return value;
     }
 
-    int TransformManager::GetY(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const
+    int TransformManager::GetY(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const
     {
         int value = YTranslation->TranslateY(compBounds, parentBounds);
 
@@ -91,7 +91,7 @@ namespace FaceEngineGUI
         return value;
     }
 
-    int TransformManager::GetWidth(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const
+    int TransformManager::GetWidth(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const
     {
         int value = WidthScale->ScaleWidth(compBounds, parentBounds);
 
@@ -118,7 +118,7 @@ namespace FaceEngineGUI
         return value;
     }
 
-    int TransformManager::GetHeight(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const
+    int TransformManager::GetHeight(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const
     {
         int value = HeightScale->ScaleHeight(compBounds, parentBounds);
 

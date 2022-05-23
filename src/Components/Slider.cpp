@@ -3,11 +3,11 @@
 #include "FaceEngineGUI/Transforms/Translations/CentreTranslation.h"
 #include <iostream>
 
-namespace FaceEngineGUI::Components
+namespace FaceEngineGUI
 {
     Slider::Slider(int x, int y, int railLength, int railHeight, int sliderWidth, int sliderHeight, 
-                   FaceEngine::Graphics::Texture2D* sliderailTexture, 
-                   FaceEngine::Graphics::Texture2D* sliderTexture, 
+                   FaceEngine::Texture2D* sliderailTexture, 
+                   FaceEngine::Texture2D* sliderTexture, 
                    FaceEngineGUI::UIComponent* parent) : FaceEngineGUI::UIComponent(x, y, railLength, railHeight, parent),
     sliderButtonBounds(x - (sliderWidth / 2), y + (railHeight / 2) - (sliderHeight / 2), sliderWidth, sliderHeight),
     sliderSourceRectangle(0, 0, sliderTexture->GetWidth(), sliderTexture->GetHeight() / 3)
@@ -87,7 +87,7 @@ namespace FaceEngineGUI::Components
         }
     }
 
-    void Slider::Draw(FaceEngine::Graphics::SpriteRenderer* renderer)
+    void Slider::Draw(FaceEngine::SpriteBatcher* renderer)
     {
         if (!enabled)
         {

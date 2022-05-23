@@ -3,9 +3,9 @@
 
 #include "FaceEngineGUI/Transforms/UITranslation.h"
 
-namespace FaceEngineGUI::Transforms::Translations
+namespace FaceEngineGUI::Translations
 {
-    class RelativeTranslation : public FaceEngineGUI::Transforms::UITranslation
+    class RelativeTranslation : public FaceEngineGUI::UITranslation
     {
     public:
         float TranslationFactor;
@@ -14,8 +14,8 @@ namespace FaceEngineGUI::Transforms::Translations
         RelativeTranslation(float translationFactory, const MeasurementPoint& referencePoint);
         ~RelativeTranslation() override { }
 
-        int TranslateX(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const override;
-        int TranslateY(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const override;
+        int TranslateX(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const override;
+        int TranslateY(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const override;
 
         void Print() const override;
     };

@@ -11,7 +11,7 @@ namespace FaceEngineGUI
         Canvas();
         
     public:
-        static FaceEngine::Math::Rectangle Bounds;
+        static FaceEngine::Rectanglef Bounds;
         static void Initialise(const int& width, const int& height);
     };
 }

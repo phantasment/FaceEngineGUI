@@ -2,7 +2,6 @@
 #define FACEENGINEGUI_ANIMATIONS_TRANSITION_H
 
 #include "FaceEngineGUI/Animations/Animation.h"
-#include "FaceEngine/GameUpdate.h"
 #include <memory>
 
 namespace FaceEngineGUI::Animations

@@ -4,9 +4,9 @@
 #include "FaceEngineGUI/Transforms/UITranslation.h"
 #include "FaceEngine/Math/Rectangle.h"
 
-namespace FaceEngineGUI::Transforms::Translations
+namespace FaceEngineGUI::Translations
 {
-    class PixelTranslation : public FaceEngineGUI::Transforms::UITranslation
+    class PixelTranslation : public FaceEngineGUI::UITranslation
     {
         public:
             int TranslationFactor;
@@ -17,8 +17,8 @@ namespace FaceEngineGUI::Transforms::Translations
 
             ~PixelTranslation() override { }
 
-            int TranslateX(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const override;
-            int TranslateY(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const override;
+            int TranslateX(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const override;
+            int TranslateY(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const override;
 
             void Print() const override;
     };

@@ -7,7 +7,7 @@
 #include "FaceEngineGUI/Transforms/UITranslation.h"
 #include "FaceEngineGUI/Transforms/UIScale.h"
 #include "FaceEngine/GameUpdate.h"
-#include "FaceEngine/Graphics/SpriteRenderer.h"
+#include "FaceEngine/SpriteBatcher.h"
 
 namespace FaceEngineGUI
 {
@@ -16,7 +16,7 @@ namespace FaceEngineGUI
         protected:
             TransformManager TManager;
             AnimationManager AManager;
-            FaceEngine::Math::Rectangle Bounds;
+            FaceEngine::Rectanglef Bounds;
             std::vector<UIComponent*> Children;
             UIComponent* Parent;
 
@@ -34,7 +34,7 @@ namespace FaceEngineGUI
         public:
             virtual ~UIComponent();
             virtual void Update(FaceEngine::GameUpdate* gameUpdate);
-            virtual void Draw(FaceEngine::Graphics::SpriteRenderer* renderer);
+            virtual void Draw(FaceEngine::SpriteBatcher* renderer); // change all variable names away from renderer
 
             void InitialiseAnimations();
             void SetIntroTransition(FaceEngineGUI::Animations::Transition* introTransition);
@@ -47,7 +47,7 @@ namespace FaceEngineGUI
             bool IsEnabled() const;
 
             UIComponent* GetParent() const;
-            FaceEngine::Math::Rectangle GetBounds() const;
+            FaceEngine::Rectanglef GetBounds() const;
             int GetX() const;
             int GetY() const;
             int GetRelativeX() const;
@@ -59,19 +59,19 @@ namespace FaceEngineGUI
             int GetWidth() const;
             int GetHeight() const;
 
-            virtual void SetX(FaceEngineGUI::Transforms::UITranslation* xTranslation);
-            void SetMinX(FaceEngineGUI::Transforms::UITranslation* xTranslation);
-            void SetMaxX(FaceEngineGUI::Transforms::UITranslation* xTranslation);
-            virtual void SetY(FaceEngineGUI::Transforms::UITranslation* yTranslation);
-            void SetMinY(FaceEngineGUI::Transforms::UITranslation* yTranslation);
-            void SetMaxY(FaceEngineGUI::Transforms::UITranslation* yTranslation);
+            virtual void SetX(FaceEngineGUI::UITranslation* xTranslation);
+            void SetMinX(FaceEngineGUI::UITranslation* xTranslation);
+            void SetMaxX(FaceEngineGUI::UITranslation* xTranslation);
+            virtual void SetY(FaceEngineGUI::UITranslation* yTranslation);
+            void SetMinY(FaceEngineGUI::UITranslation* yTranslation);
+            void SetMaxY(FaceEngineGUI::UITranslation* yTranslation);
 
-            void SetWidth(FaceEngineGUI::Transforms::UIScale* widthScale);
-            void SetMinWidth(FaceEngineGUI::Transforms::UIScale* widthScale);
-            void SetMaxWidth(FaceEngineGUI::Transforms::UIScale* widthScale);
-            void SetHeight(FaceEngineGUI::Transforms::UIScale* heightScale);
-            void SetMinHeight(FaceEngineGUI::Transforms::UIScale* heightScale);
-            void SetMaxHeight(FaceEngineGUI::Transforms::UIScale* heightScale);
+            void SetWidth(FaceEngineGUI::UIScale* widthScale);
+            void SetMinWidth(FaceEngineGUI::UIScale* widthScale);
+            void SetMaxWidth(FaceEngineGUI::UIScale* widthScale);
+            void SetHeight(FaceEngineGUI::UIScale* heightScale);
+            void SetMinHeight(FaceEngineGUI::UIScale* heightScale);
+            void SetMaxHeight(FaceEngineGUI::UIScale* heightScale);
     };
 }
 

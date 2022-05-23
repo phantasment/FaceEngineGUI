@@ -2,11 +2,11 @@
 #include <cmath>
 #include <iostream>
 
-namespace FaceEngineGUI::Components
+namespace FaceEngineGUI
 {
     Stepper::Stepper(int x, int y, int railLength, int railHeight, int sliderWidth, int sliderHeight, int steps, // TODO: error if steps = 0 or greater than rail length
-                   FaceEngine::Graphics::Texture2D* sliderailTexture, 
-                   FaceEngine::Graphics::Texture2D* sliderTexture, 
+                   FaceEngine::Texture2D* sliderailTexture, 
+                   FaceEngine::Texture2D* sliderTexture, 
                    FaceEngineGUI::UIComponent* parent) : FaceEngineGUI::UIComponent(x, y, railLength, railHeight, parent),
     stepperButtonBounds(x - (sliderWidth / 2), y + (railHeight / 2) - (sliderHeight / 2), sliderWidth, sliderHeight),
     stepperButtonSourceRect(0, 0, sliderTexture->GetWidth(), sliderTexture->GetHeight() / 3),
@@ -89,7 +89,7 @@ namespace FaceEngineGUI::Components
         }
     }
 
-    void Stepper::Draw(FaceEngine::Graphics::SpriteRenderer* renderer)
+    void Stepper::Draw(FaceEngine::SpriteBatcher* renderer)
     {
         if (!enabled)
         {

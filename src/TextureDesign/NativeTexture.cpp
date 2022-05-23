@@ -1,7 +1,7 @@
 #include "FaceEngineGUI/TextureDesign/NativeTexture.h"
 #include <memory>
 
-namespace FaceEngineGUI::TextureDesign
+namespace FaceEngineGUI
 {
     NativeTexture::NativeTexture()
     {
@@ -22,20 +22,18 @@ namespace FaceEngineGUI::TextureDesign
         delete VisualEffect;
     }
 
-    FaceEngine::Graphics::Texture2D* NativeTexture::Rasterise() //Fill -> Border + CornerEffect-> VisualEffect
+    FaceEngine::Texture2D* NativeTexture::Rasterise() //Fill -> Border + CornerEffect-> VisualEffect
     {
-        // TODO - fix
-
-        std::unique_ptr<char[]> imageData = std::make_unique<char[]>(Width * Height * 4);
+        char* imageData = new char[Width * Height * 4];
 
         // Populating pixel data from Fill.
 
-        for (int x = 0; x < Width; ++x)
+        for (int y = 0; y < Height; ++y)
         {
-            for (int y = 0; y < Height; ++y)
+            for (int x = 0; x < Width; ++x)
             {
-                int dataIndex = (x + (y * Width)) * 4;
-                FaceEngine::Graphics::Colour fillData = Fill->GetPixelData(x, y, Width, Height);
+                int dataIndex = (x + (y * Width) * 4);
+                FaceEngine::Colour fillData = Fill->GetPixelData(x, y, Width, Height);
 
                 imageData[dataIndex] = fillData.GetRAsInt();
                 imageData[dataIndex + 1] = fillData.GetGAsInt();
@@ -44,6 +42,6 @@ namespace FaceEngineGUI::TextureDesign
             }
         }
 
-        return FaceEngine::Graphics::Texture2D::CreateTexture2D(Width, Height, imageData.get());
+        return FaceEngine::Texture2D::CreateTexture2D(Width, Height, imageData);
     }
 }

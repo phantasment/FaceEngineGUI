@@ -1,15 +1,12 @@
 #include "FaceEngineGUI/Components/Textbox.h"
-#include "FaceEngine/Graphics/SpriteRenderer.h"
-#include <iostream>
-
-#define print(x) std::cout << x << std::endl
+#include "FaceEngine/SpriteBatcher.h"
 
 namespace FaceEngineGUI::Components
 {
-    Textbox::Textbox(const int x, const int y, const int width, const int height, FaceEngine::Graphics::Texture2D* backgroundTexture, FaceEngine::Graphics::Texture2D* typingBarTexture, FaceEngine::Graphics::TextureFont* font, FaceEngine::Graphics::Colour fontColour, FaceEngineGUI::UIComponent* parent) : UIComponent(x, y, width, height, parent)
+    Textbox::Textbox(const int x, const int y, const int width, const int height, FaceEngine::Texture2D* backgroundTexture, FaceEngine::Texture2D* typingBarTexture, FaceEngine::TextureFont* font, FaceEngine::Colour fontColour, FaceEngineGUI::UIComponent* parent) : UIComponent(x, y, width, height, parent)
     {
         // Textbox Variables
-        _typingSession = FaceEngineGUI::Util::TypingSession();
+        _typingSession = FaceEngine::TypingSession();
         _focussed = false;
         _state = FaceEngineGUI::Util::NEUTRAL;
 
@@ -18,17 +15,17 @@ namespace FaceEngineGUI::Components
         _caretTexture = typingBarTexture;
 
         // Boundary Variables
-        _sourceBounds = FaceEngine::Math::Rectangle(0, 0, _backgroundTexture->GetWidth(), _backgroundTexture->GetHeight() / 3);
+        _sourceBounds = FaceEngine::Rectanglef(0, 0, _backgroundTexture->GetWidth(), _backgroundTexture->GetHeight() / 3);
 
         if (parent == nullptr)
         {
-            _textBounds = FaceEngine::Math::Rectangle(x, y, width, height); // padding implemented here
-            _caretBounds = FaceEngine::Math::Rectangle(x, y, 3, height);
+            _textBounds = FaceEngine::Rectanglef(x, y, width, height); // padding implemented here
+            _caretBounds = FaceEngine::Rectanglef(x, y, 3, height);
         }
         else
         {
-            _textBounds = FaceEngine::Math::Rectangle(parent->GetBounds().X + x, parent->GetBounds().Y + y, width, height); // padding implemented here
-            _caretBounds = FaceEngine::Math::Rectangle(parent->GetBounds().X + x, parent->GetBounds().Y + y, 3, height);
+            _textBounds = FaceEngine::Rectanglef(parent->GetBounds().X + x, parent->GetBounds().Y + y, width, height); // padding implemented here
+            _caretBounds = FaceEngine::Rectanglef(parent->GetBounds().X + x, parent->GetBounds().Y + y, 3, height);
         }
 
         // Caret Variables
@@ -39,7 +36,7 @@ namespace FaceEngineGUI::Components
         // Text Variables
         _font = font;
         _fontColour = fontColour;
-        _textScale = _textBounds.Height / ((_font->GetAscender() + abs(_font->GetDescender())) / 64.0);
+        _textScale = _textBounds.Height / _font->MeasureString("M").Y;
     }
 
     Textbox::~Textbox()
@@ -57,6 +54,7 @@ namespace FaceEngineGUI::Components
         }
         
         UpdateStatus(gameUpdate);
+        UpdateCursor(gameUpdate);
 
         if (_focussed)
         {
@@ -70,7 +68,7 @@ namespace FaceEngineGUI::Components
         }
     }
 
-    void Textbox::Draw(FaceEngine::Graphics::SpriteRenderer* renderer)
+    void Textbox::Draw(FaceEngine::SpriteBatcher* renderer)
     {
         if (!enabled)
         {
@@ -137,16 +135,10 @@ namespace FaceEngineGUI::Components
     {
         int relativeDistance = gameUpdate->GetCursorPos().X - _textBounds.X;
 
-        print("NEW THING");
-        print("relative distance: " << relativeDistance);
-
         for (int i = 1; i < _typingSession.GetText().length() + 1; ++i)
         {
-            print("string length: " << _font->MeasureString(_typingSession.GetText().substr(0, i)).X * _textScale);
-
             if (relativeDistance < _font->MeasureString(_typingSession.GetText().substr(0, i)).X * _textScale)
             {
-                print("success");
                 _typingSession.SetInsertPosition(i - 1);
                 SetCaretPosition(i - 1);
                 return;
@@ -159,7 +151,14 @@ namespace FaceEngineGUI::Components
 
     void Textbox::UpdateCursor(FaceEngine::GameUpdate* gameUpdate)
     {
-
+        if (Bounds.Contains(gameUpdate->GetCursorPos()))
+        {
+            //gameUpdate->SetCursorType(FaceEngine::IBeam);
+        }
+        else
+        {
+            //gameUpdate->SetCursorType(FaceEngine::Normal);
+        }
     }
 
     void Textbox::UpdateStatus(FaceEngine::GameUpdate* gameUpdate)
@@ -195,17 +194,17 @@ namespace FaceEngineGUI::Components
         }
     }
 
-    void Textbox::DrawBackground(FaceEngine::Graphics::SpriteRenderer* renderer)
+    void Textbox::DrawBackground(FaceEngine::SpriteBatcher* renderer)
     {
         renderer->Draw(_backgroundTexture, Bounds, _sourceBounds);
     }
 
-    void Textbox::DrawText(FaceEngine::Graphics::SpriteRenderer* renderer)
+    void Textbox::DrawText(FaceEngine::SpriteBatcher* renderer)
     {
-        renderer->Draw(_font, _typingSession.GetText(), _textBounds.GetPosition(), _fontColour, _textScale);
+        renderer->DrawString(_font, _typingSession.GetText(), _textBounds.GetPosition(), _fontColour, _textScale);
     }
 
-    void Textbox::DrawCaret(FaceEngine::Graphics::SpriteRenderer* renderer)
+    void Textbox::DrawCaret(FaceEngine::SpriteBatcher* renderer)
     {
         if (_caretVisible)
         {
@@ -213,18 +212,33 @@ namespace FaceEngineGUI::Components
         }
     }
 
-    void Textbox::SetX(FaceEngineGUI::Transforms::UITranslation* xTranslation)
+    void Textbox::SetX(FaceEngineGUI::UITranslation* xTranslation)
     {
         FaceEngineGUI::UIComponent::SetX(xTranslation);
 
         _textBounds.X = Bounds.X;
     }
 
-    void Textbox::SetY(FaceEngineGUI::Transforms::UITranslation* yTranslation)
+    void Textbox::SetY(FaceEngineGUI::UITranslation* yTranslation)
     {
         FaceEngineGUI::UIComponent::SetY(yTranslation);
 
         _textBounds.Y = Bounds.Y;
         _caretBounds.Y = Bounds.Y;
+    }
+
+    void Textbox::SetPadding(int paddingX, int paddingY)
+    {
+        _textBounds.X = Bounds.X + paddingX;
+        _textBounds.Y = Bounds.Y + paddingY;
+        _textBounds.Width = Bounds.Width - (2 * paddingX);
+        _textBounds.Height = Bounds.Height - (2 * paddingY);
+
+        _textScale = _textBounds.Height / _font->MeasureString("M").Y;
+    }
+
+    bool Textbox::IsFocussed() const
+    {
+        return _focussed;
     }
 }

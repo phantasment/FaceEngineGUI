@@ -1,7 +1,7 @@
 #ifndef FACEENGINEGUI_TRANSFORMS_MEASUREMENTPOINT_H
 #define FACEENGINEGUI_TRANSFORMS_MEASUREMENTPOINT_H
 
-namespace FaceEngineGUI::Transforms
+namespace FaceEngineGUI
 {
     enum MeasurementPoint
     {

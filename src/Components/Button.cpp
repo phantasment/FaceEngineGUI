@@ -1,23 +1,23 @@
 #include "FaceEngineGUI/Components/Button.h"
 #include <iostream>
 
-namespace FaceEngineGUI::Components
+namespace FaceEngineGUI
 {
-    Button::Button(FaceEngine::Graphics::Texture2D* texture, UIComponent* parent) : FaceEngineGUI::UIComponent(0, 0, 0, 0, parent)
+    Button::Button(FaceEngine::Texture2D* texture, UIComponent* parent) : FaceEngineGUI::UIComponent(0, 0, 0, 0, parent)
     {
         Initialise(texture);
     }
 
-    Button::Button(int x, int y, int width, int height, FaceEngine::Graphics::Texture2D* texture, FaceEngineGUI::UIComponent* parent) : FaceEngineGUI::UIComponent(x, y, width, height, parent)
+    Button::Button(int x, int y, int width, int height, FaceEngine::Texture2D* texture, FaceEngineGUI::UIComponent* parent) : FaceEngineGUI::UIComponent(x, y, width, height, parent)
     {
         Initialise(texture);
     }
 
-    void Button::Initialise(FaceEngine::Graphics::Texture2D* texture)
+    void Button::Initialise(FaceEngine::Texture2D* texture)
     {
         Texture = texture;
         buttonState = FaceEngineGUI::Util::UIButtonState::NEUTRAL;
-        sourceRectangle = FaceEngine::Math::Rectangle(0, 0, texture->GetWidth(), texture->GetHeight() / 3);
+        sourceRectangle = FaceEngine::Rectanglef(0, 0, texture->GetWidth(), texture->GetHeight() / 3);
     }
 
     void Button::UpdateButtonState(FaceEngine::GameUpdate* gameUpdate)
@@ -64,7 +64,7 @@ namespace FaceEngineGUI::Components
         FaceEngineGUI::UIComponent::Update(gameUpdate);
     }
 
-    void Button::Draw(FaceEngine::Graphics::SpriteRenderer* renderer)
+    void Button::Draw(FaceEngine::SpriteBatcher* renderer)
     {
         if (!enabled)
         {

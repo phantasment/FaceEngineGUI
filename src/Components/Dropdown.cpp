@@ -4,17 +4,17 @@
 #include "FaceEngineGUI/Transforms/Translations/PixelTranslation.h"
 #include <iostream>
 
-namespace FaceEngineGUI::Components
+namespace FaceEngineGUI
 {
-    Dropdown::Dropdown(int x, int y, int width, int height, FaceEngine::Graphics::Texture2D* buttonTextureAtlas, FaceEngine::Graphics::Texture2D* extensionBackgroundTexture, FaceEngineGUI::UIComponent* parent) : FaceEngineGUI::UIComponent(x, y, width, height, parent)
+    Dropdown::Dropdown(int x, int y, int width, int height, FaceEngine::Texture2D* buttonTextureAtlas, FaceEngine::Texture2D* extensionBackgroundTexture, FaceEngineGUI::UIComponent* parent) : FaceEngineGUI::UIComponent(x, y, width, height, parent)
     {
         _buttonTextureAtlas = buttonTextureAtlas;
         _extensionBackgroundTexture = extensionBackgroundTexture;
         _elements = std::vector<UIComponent*>();
         _extended = false;
-        _extensionBounds = FaceEngine::Math::Rectangle(x, y + height, width, 0);
+        _extensionBounds = FaceEngine::Rectanglef(x, y + height, width, 0);
 
-        _buttonSourceRectangle = FaceEngine::Math::Rectangle(0, 0, _buttonTextureAtlas->GetWidth(), _buttonTextureAtlas->GetHeight() / 3);
+        _buttonSourceRectangle = FaceEngine::Rectanglef(0, 0, _buttonTextureAtlas->GetWidth(), _buttonTextureAtlas->GetHeight() / 3);
     }
 
     Dropdown::~Dropdown()
@@ -31,16 +31,16 @@ namespace FaceEngineGUI::Components
     {
         AddChild(element);
 
-        element->SetWidth(new FaceEngineGUI::Transforms::Scales::RelativeScale(1.0f));
-        element->SetX(new FaceEngineGUI::Transforms::Translations::PixelTranslation(0));
+        element->SetWidth(new FaceEngineGUI::Scales::RelativeScale(1.0f));
+        element->SetX(new FaceEngineGUI::Translations::PixelTranslation(0));
 
         if (_elements.size() == 0)
         {
-            element->SetY(new FaceEngineGUI::Transforms::Translations::PixelTranslation(Bounds.Height));
+            element->SetY(new FaceEngineGUI::Translations::PixelTranslation(Bounds.Height));
         }
         else
         {
-            element->SetY(new FaceEngineGUI::Transforms::Translations::PixelTranslation(_elements.back()->GetRelativeY() + _elements.back()->GetHeight()));
+            element->SetY(new FaceEngineGUI::Translations::PixelTranslation(_elements.back()->GetRelativeY() + _elements.back()->GetHeight()));
         }
 
         _elements.push_back(element);
@@ -75,7 +75,7 @@ namespace FaceEngineGUI::Components
         UpdateButtonState(gameUpdate);
     }
 
-    void Dropdown::Draw(FaceEngine::Graphics::SpriteRenderer* renderer)
+    void Dropdown::Draw(FaceEngine::SpriteBatcher* renderer)
     {
         if (!enabled)
         {

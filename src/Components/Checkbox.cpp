@@ -1,21 +1,21 @@
 #include "FaceEngineGUI/Components/Checkbox.h"
 
-namespace FaceEngineGUI::Components
+namespace FaceEngineGUI
 {
-    Checkbox::Checkbox(FaceEngine::Graphics::Texture2D* texture, FaceEngineGUI::UIComponent* parent) : FaceEngineGUI::UIComponent(parent)
+    Checkbox::Checkbox(FaceEngine::Texture2D* texture, FaceEngineGUI::UIComponent* parent) : FaceEngineGUI::UIComponent(parent)
     {
         Texture = texture;
         state = FaceEngineGUI::Util::NEUTRAL;
         checked = false;
-        sourceRectangle = FaceEngine::Math::Rectangle(0, 0, texture->GetWidth(), texture->GetHeight() / 6);
+        sourceRectangle = FaceEngine::Rectanglef(0, 0, texture->GetWidth(), texture->GetHeight() / 6);
     }
 
-    Checkbox::Checkbox(int x, int y, int width, int height, FaceEngine::Graphics::Texture2D* texture, FaceEngineGUI::UIComponent* parent) : FaceEngineGUI::UIComponent(x, y, width, height, parent)
+    Checkbox::Checkbox(int x, int y, int width, int height, FaceEngine::Texture2D* texture, FaceEngineGUI::UIComponent* parent) : FaceEngineGUI::UIComponent(x, y, width, height, parent)
     {
         Texture = texture;
         state = FaceEngineGUI::Util::NEUTRAL;
         checked = false;
-        sourceRectangle = FaceEngine::Math::Rectangle(0, 0, texture->GetWidth(), texture->GetHeight() / 6);
+        sourceRectangle = FaceEngine::Rectanglef(0, 0, texture->GetWidth(), texture->GetHeight() / 6);
     }
 
     void Checkbox::UpdateState(FaceEngine::GameUpdate* gameUpdate)
@@ -77,7 +77,7 @@ namespace FaceEngineGUI::Components
         FaceEngineGUI::UIComponent::Update(gameUpdate);
     }
 
-    void Checkbox::Draw(FaceEngine::Graphics::SpriteRenderer* renderer)
+    void Checkbox::Draw(FaceEngine::SpriteBatcher* renderer)
     {
         if (!enabled)
         {

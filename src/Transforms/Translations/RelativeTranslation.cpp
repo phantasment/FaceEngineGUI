@@ -1,6 +1,6 @@
 #include "FaceEngineGUI/Transforms/Translations/RelativeTranslation.h"
 
-namespace FaceEngineGUI::Transforms::Translations
+namespace FaceEngineGUI::Translations
 {
     RelativeTranslation::RelativeTranslation(float translationFactor)
     {   
@@ -13,7 +13,7 @@ namespace FaceEngineGUI::Transforms::Translations
         MeasureFrom = referencePoint;
     }
 
-    int RelativeTranslation::TranslateX(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const
+    int RelativeTranslation::TranslateX(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const
     {
         switch (MeasureFrom)
         {
@@ -26,7 +26,7 @@ namespace FaceEngineGUI::Transforms::Translations
         }
     }
 
-    int RelativeTranslation::TranslateY(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const
+    int RelativeTranslation::TranslateY(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const
     {
         switch (MeasureFrom)
         {

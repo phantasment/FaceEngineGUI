@@ -11,30 +11,30 @@ namespace FaceEngineGUI
     class TransformManager
     {
     public:
-        FaceEngineGUI::Transforms::UITranslation* XTranslation;
-        FaceEngineGUI::Transforms::UITranslation* MinXTranslation;
-        FaceEngineGUI::Transforms::UITranslation* MaxXTranslation;
+        FaceEngineGUI::UITranslation* XTranslation;
+        FaceEngineGUI::UITranslation* MinXTranslation;
+        FaceEngineGUI::UITranslation* MaxXTranslation;
 
-        FaceEngineGUI::Transforms::UITranslation* YTranslation;
-        FaceEngineGUI::Transforms::UITranslation* MinYTranslation;
-        FaceEngineGUI::Transforms::UITranslation* MaxYTranslation;
+        FaceEngineGUI::UITranslation* YTranslation;
+        FaceEngineGUI::UITranslation* MinYTranslation;
+        FaceEngineGUI::UITranslation* MaxYTranslation;
 
-        FaceEngineGUI::Transforms::UIScale* WidthScale;
-        FaceEngineGUI::Transforms::UIScale* MinWidthScale;
-        FaceEngineGUI::Transforms::UIScale* MaxWidthScale;
+        FaceEngineGUI::UIScale* WidthScale;
+        FaceEngineGUI::UIScale* MinWidthScale;
+        FaceEngineGUI::UIScale* MaxWidthScale;
 
-        FaceEngineGUI::Transforms::UIScale* HeightScale;
-        FaceEngineGUI::Transforms::UIScale* MinHeightScale;
-        FaceEngineGUI::Transforms::UIScale* MaxHeightScale;
+        FaceEngineGUI::UIScale* HeightScale;
+        FaceEngineGUI::UIScale* MinHeightScale;
+        FaceEngineGUI::UIScale* MaxHeightScale;
 
         TransformManager() : TransformManager(nullptr, nullptr, nullptr, nullptr) { }
-        TransformManager(FaceEngineGUI::Transforms::UITranslation* xTranslation, FaceEngineGUI::Transforms::UITranslation* yTranslation, FaceEngineGUI::Transforms::UIScale* widthScale, FaceEngineGUI::Transforms::UIScale* heightScale);
+        TransformManager(FaceEngineGUI::UITranslation* xTranslation, FaceEngineGUI::UITranslation* yTranslation, FaceEngineGUI::UIScale* widthScale, FaceEngineGUI::UIScale* heightScale);
         ~TransformManager();
 
-        int GetX(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const;
-        int GetY(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const;
-        int GetWidth(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const;
-        int GetHeight(const FaceEngine::Math::Rectangle& compBounds, const FaceEngine::Math::Rectangle& parentBounds) const;
+        int GetX(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const;
+        int GetY(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const;
+        int GetWidth(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const;
+        int GetHeight(const FaceEngine::Rectanglef& compBounds, const FaceEngine::Rectanglef& parentBounds) const;
     };
 }
 

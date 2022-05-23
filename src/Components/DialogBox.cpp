@@ -1,12 +1,12 @@
 #include "FaceEngineGUI/Components/DialogBox.h"
 
-namespace FaceEngineGUI::Components
+namespace FaceEngineGUI
 {
     DialogBox::DialogBox(int x, int y, int width, int height, FaceEngineGUI::UIComponent* parent) : UIComponent(x, y, width, height, parent)
     {
         _titleBar = new Sprite(0, 0, width, TITLE_BAR_HEIGHT, nullptr, this);
         _body = new Sprite(0, TITLE_BAR_HEIGHT, width, height - TITLE_BAR_HEIGHT, nullptr, this);
-        _title = new Label(10, 0, 100, 23, "", nullptr, FaceEngine::Graphics::Colour::White, this);
+        _title = new Label(10, 7, 100, 9, "", nullptr, FaceEngine::Colour::White, this);
         _minimiseButton = nullptr;
         _maximiseButton = nullptr;
         _closeButton = nullptr;
@@ -32,7 +32,7 @@ namespace FaceEngineGUI::Components
         //_closeButton->Update(gameUpdate);
     }
 
-    void DialogBox::Draw(FaceEngine::Graphics::SpriteRenderer* renderer)
+    void DialogBox::Draw(FaceEngine::SpriteBatcher* renderer)
     {
         if (!enabled)
         {
@@ -45,22 +45,22 @@ namespace FaceEngineGUI::Components
         //_closeButton->Draw(renderer);
     }
 
-    void DialogBox::SetTitleBarTexture(FaceEngine::Graphics::Texture2D* texture)
+    void DialogBox::SetTitleBarTexture(FaceEngine::Texture2D* texture)
     {
         _titleBar->Texture = texture;
     }
 
-    void DialogBox::SetBodyTexture(FaceEngine::Graphics::Texture2D* texture)
+    void DialogBox::SetBodyTexture(FaceEngine::Texture2D* texture)
     {
         _body->Texture = texture;
     }
 
-    void DialogBox::SetCloseButtonTexture(FaceEngine::Graphics::Texture2D* texture)
+    void DialogBox::SetCloseButtonTexture(FaceEngine::Texture2D* texture)
     {
         _closeButton->Texture = texture;
     }
 
-    void DialogBox::SetTitleFont(FaceEngine::Graphics::TextureFont* font)
+    void DialogBox::SetTitleFont(FaceEngine::TextureFont* font)
     {
         _title->SetFont(font);
     }

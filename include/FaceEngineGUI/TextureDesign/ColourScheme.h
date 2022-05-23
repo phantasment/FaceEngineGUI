@@ -1,40 +1,40 @@
 #ifndef FACEENGINEGUI_TEXTUREDESIGN_COLOURSCHEME_H
 #define FACEENGINEGUI_TEXTUREDESIGN_COLOURSCHEME_H
 
-#include "FaceEngine/Graphics/Colour.h"
+#include "FaceEngine/Colour.h"
 
-namespace FaceEngineGUI::TextureDesign
+namespace FaceEngineGUI
 {
     class ColourScheme
     {
         private:
             // ----- Basic Scheme -----
 
-            FaceEngine::Graphics::Colour _backgroundColour;
-            FaceEngine::Graphics::Colour _borderColour;
+            FaceEngine::Colour _backgroundColour;
+            FaceEngine::Colour _borderColour;
         
             // ----- Interactive Scheme -----
 
-            FaceEngine::Graphics::Colour _hoveredBackgroundColour;
-            FaceEngine::Graphics::Colour _pressedBackgroundColour;
-            FaceEngine::Graphics::Colour _hoveredBorderColour;
-            FaceEngine::Graphics::Colour _pressedBorderColour;
+            FaceEngine::Colour _hoveredBackgroundColour;
+            FaceEngine::Colour _pressedBackgroundColour;
+            FaceEngine::Colour _hoveredBorderColour;
+            FaceEngine::Colour _pressedBorderColour;
 
             // ----- Advanced Interactive Scheme -----
 
-            FaceEngine::Graphics::Colour _scrollbarColour;
-            FaceEngine::Graphics::Colour _hoveredScrollbarColour;
-            FaceEngine::Graphics::Colour _pressedScrollbarColour;
-            FaceEngine::Graphics::Colour _scrollerColour;
-            FaceEngine::Graphics::Colour _hoveredScrollerColour;
-            FaceEngine::Graphics::Colour _pressedScrollerColour;
+            FaceEngine::Colour _scrollbarColour;
+            FaceEngine::Colour _hoveredScrollbarColour;
+            FaceEngine::Colour _pressedScrollbarColour;
+            FaceEngine::Colour _scrollerColour;
+            FaceEngine::Colour _hoveredScrollerColour;
+            FaceEngine::Colour _pressedScrollerColour;
 
             // ----- Text Scheme ----- TODO: rename some of these
 
-            FaceEngine::Graphics::Colour _textColour;
-            FaceEngine::Graphics::Colour _inaccessibleTextColour;
-            FaceEngine::Graphics::Colour _selectedTextColour;
-            FaceEngine::Graphics::Colour _textSelectionBackgroundColour;
+            FaceEngine::Colour _textColour;
+            FaceEngine::Colour _inaccessibleTextColour;
+            FaceEngine::Colour _selectedTextColour;
+            FaceEngine::Colour _textSelectionBackgroundColour;
 
             // ----- Inheritance Scheme -----
 
@@ -42,11 +42,11 @@ namespace FaceEngineGUI::TextureDesign
 
         public:
             ColourScheme();
-            ColourScheme(FaceEngine::Graphics::Colour& backgroundColour, FaceEngine::Graphics::Colour& borderColour);
+            ColourScheme(FaceEngine::Colour& backgroundColour, FaceEngine::Colour& borderColour);
             ~ColourScheme();
 
-            FaceEngine::Graphics::Colour GetBackgroundColour() const;
-            FaceEngine::Graphics::Colour GetBorderColour() const;
+            FaceEngine::Colour GetBackgroundColour() const;
+            FaceEngine::Colour GetBorderColour() const;
     };
 }
 

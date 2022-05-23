@@ -3,9 +3,9 @@
 
 #include "FaceEngineGUI/TextureDesign/NativeTexture.h"
 #include "FaceEngineGUI/TextureDesign/ColourScheme.h"
-#include "FaceEngine/Graphics/Colour.h"
+#include "FaceEngine/Colour.h"
 
-namespace FaceEngineGUI::TextureDesign
+namespace FaceEngineGUI
 {
     class TextureFactory
     {
@@ -13,9 +13,9 @@ namespace FaceEngineGUI::TextureDesign
         TextureFactory();
     
     public:
-        static FaceEngineGUI::TextureDesign::NativeTexture CreateSolidFill(const int width, const int height, const FaceEngineGUI::TextureDesign::ColourScheme& colourScheme);
-        static FaceEngineGUI::TextureDesign::NativeTexture CreateSolidFill(const int width, const int height, const FaceEngine::Graphics::Colour& fillColour);
-        static FaceEngineGUI::TextureDesign::NativeTexture CreateLinearGradientFill(const int width, const int height, const FaceEngine::Graphics::Colour& startColour, const FaceEngine::Graphics::Colour& endColour);
+        static FaceEngineGUI::NativeTexture CreateSolidFill(const int width, const int height, const FaceEngineGUI::ColourScheme& colourScheme);
+        static FaceEngineGUI::NativeTexture CreateSolidFill(const int width, const int height, const FaceEngine::Colour& fillColour);
+        static FaceEngineGUI::NativeTexture CreateLinearGradientFill(const int width, const int height, const FaceEngine::Colour& startColour, const FaceEngine::Colour& endColour);
     };
 }
 

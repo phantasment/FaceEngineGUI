@@ -7,38 +7,38 @@
 #include "FaceEngineGUI/Components/Button.h"
 #include <string>
 
-#define TITLE_BAR_HEIGHT 30
+#define TITLE_BAR_HEIGHT 25
 
-namespace FaceEngineGUI::Components
+namespace FaceEngineGUI
 {
     class DialogBox : public FaceEngineGUI::UIComponent
     {
     private:
         // GUI Sections
-        FaceEngineGUI::Components::Sprite* _titleBar;
-        FaceEngineGUI::Components::Sprite* _body;
+        FaceEngineGUI::Sprite* _titleBar;
+        FaceEngineGUI::Sprite* _body;
 
         // GUI Components
-        FaceEngineGUI::Components::Label* _title;
-        FaceEngineGUI::Components::Button* _minimiseButton;
-        FaceEngineGUI::Components::Button* _maximiseButton;
-        FaceEngineGUI::Components::Button* _closeButton;
+        FaceEngineGUI::Label* _title;
+        FaceEngineGUI::Button* _minimiseButton;
+        FaceEngineGUI::Button* _maximiseButton;
+        FaceEngineGUI::Button* _closeButton;
 
     public:
         DialogBox(int x, int y, int width, int height, FaceEngineGUI::UIComponent* parent = nullptr);
         ~DialogBox();
 
         void Update(FaceEngine::GameUpdate* gameUpdate) override;
-        void Draw(FaceEngine::Graphics::SpriteRenderer* renderer) override;
+        void Draw(FaceEngine::SpriteBatcher* renderer) override;
 
-        void SetTitleBarTexture(FaceEngine::Graphics::Texture2D* texture);
-        void SetBodyTexture(FaceEngine::Graphics::Texture2D* texture);
-        void SetCloseButtonTexture(FaceEngine::Graphics::Texture2D* texture);
+        void SetTitleBarTexture(FaceEngine::Texture2D* texture);
+        void SetBodyTexture(FaceEngine::Texture2D* texture);
+        void SetCloseButtonTexture(FaceEngine::Texture2D* texture);
         
-        void SetTitleFont(FaceEngine::Graphics::TextureFont* textureFont);
+        void SetTitleFont(FaceEngine::TextureFont* textureFont);
         void SetTitle(std::string title);
 
-        inline FaceEngineGUI::Components::Sprite* GetBody()
+        inline FaceEngineGUI::Sprite* GetBody()
         {
             return _body;
         }

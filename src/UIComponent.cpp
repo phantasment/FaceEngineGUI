@@ -11,10 +11,10 @@ namespace FaceEngineGUI
     {
         Parent = nullptr;
 
-        TManager.XTranslation = new Transforms::Translations::PixelTranslation(0);
-        TManager.YTranslation = new Transforms::Translations::PixelTranslation(0);
-        TManager.WidthScale = new Transforms::Scales::PixelScale(0);
-        TManager.HeightScale = new Transforms::Scales::PixelScale(0);
+        TManager.XTranslation = new FaceEngineGUI::Translations::PixelTranslation(0);
+        TManager.YTranslation = new FaceEngineGUI::Translations::PixelTranslation(0);
+        TManager.WidthScale = new FaceEngineGUI::Scales::PixelScale(0);
+        TManager.HeightScale = new FaceEngineGUI::Scales::PixelScale(0);
 
         if (parent != nullptr)
         {
@@ -28,10 +28,10 @@ namespace FaceEngineGUI
     {
         Parent = nullptr;
 
-        TManager.XTranslation = new Transforms::Translations::PixelTranslation(0);
-        TManager.YTranslation = new Transforms::Translations::PixelTranslation(0);
-        TManager.WidthScale = new Transforms::Scales::PixelScale(width);
-        TManager.HeightScale = new Transforms::Scales::PixelScale(height);
+        TManager.XTranslation = new FaceEngineGUI::Translations::PixelTranslation(0);
+        TManager.YTranslation = new FaceEngineGUI::Translations::PixelTranslation(0);
+        TManager.WidthScale = new FaceEngineGUI::Scales::PixelScale(width);
+        TManager.HeightScale = new FaceEngineGUI::Scales::PixelScale(height);
 
         if (parent != nullptr)
         {
@@ -45,10 +45,10 @@ namespace FaceEngineGUI
     {
         Parent = nullptr;
 
-        TManager.XTranslation = new Transforms::Translations::PixelTranslation(x);
-        TManager.YTranslation = new Transforms::Translations::PixelTranslation(y);
-        TManager.WidthScale = new Transforms::Scales::PixelScale(width);
-        TManager.HeightScale = new Transforms::Scales::PixelScale(height);
+        TManager.XTranslation = new FaceEngineGUI::Translations::PixelTranslation(x);
+        TManager.YTranslation = new FaceEngineGUI::Translations::PixelTranslation(y);
+        TManager.WidthScale = new FaceEngineGUI::Scales::PixelScale(width);
+        TManager.HeightScale = new FaceEngineGUI::Scales::PixelScale(height);
 
         if (parent != nullptr)
         {
@@ -104,7 +104,7 @@ namespace FaceEngineGUI
         //TODO: update children.
     }
 
-    void UIComponent::Draw(FaceEngine::Graphics::SpriteRenderer* renderer)
+    void UIComponent::Draw(FaceEngine::SpriteBatcher* renderer)
     {
         if (!enabled)
         {
@@ -221,7 +221,7 @@ namespace FaceEngineGUI
         return Parent;
     }
 
-    FaceEngine::Math::Rectangle UIComponent::GetBounds() const
+    FaceEngine::Rectanglef UIComponent::GetBounds() const
     {
         return Bounds;
     }
@@ -276,7 +276,7 @@ namespace FaceEngineGUI
         return Bounds.Height;
     }
 
-    void UIComponent::SetX(Transforms::UITranslation* xTranslation)
+    void UIComponent::SetX(FaceEngineGUI::UITranslation* xTranslation)
     {
         if (TManager.XTranslation != nullptr) // TODO: move this into TManager
         {
@@ -287,7 +287,7 @@ namespace FaceEngineGUI
         RefreshComponent();
     }
 
-    void UIComponent::SetMinX(Transforms::UITranslation* xTranslation)
+    void UIComponent::SetMinX(FaceEngineGUI::UITranslation* xTranslation)
     {
         if (TManager.MinXTranslation != nullptr)
         {
@@ -298,7 +298,7 @@ namespace FaceEngineGUI
         RefreshComponent();
     }
 
-    void UIComponent::SetMaxX(Transforms::UITranslation* xTranslation)
+    void UIComponent::SetMaxX(FaceEngineGUI::UITranslation* xTranslation)
     {
         if (TManager.MaxXTranslation != nullptr)
         {
@@ -309,7 +309,7 @@ namespace FaceEngineGUI
         RefreshComponent();
     }
 
-    void UIComponent::SetY(Transforms::UITranslation* yTranslation)
+    void UIComponent::SetY(FaceEngineGUI::UITranslation* yTranslation)
     {
         if (TManager.YTranslation != nullptr)
         {
@@ -320,7 +320,7 @@ namespace FaceEngineGUI
         RefreshComponent();
     }
 
-    void UIComponent::SetMinY(Transforms::UITranslation* yTranslation)
+    void UIComponent::SetMinY(FaceEngineGUI::UITranslation* yTranslation)
     {
         if (TManager.MinYTranslation != nullptr)
         {
@@ -331,7 +331,7 @@ namespace FaceEngineGUI
         RefreshComponent();
     }
 
-    void UIComponent::SetMaxY(Transforms::UITranslation* yTranslation)
+    void UIComponent::SetMaxY(FaceEngineGUI::UITranslation* yTranslation)
     {
         if (TManager.MaxYTranslation != nullptr)
         {
@@ -342,7 +342,7 @@ namespace FaceEngineGUI
         RefreshComponent();
     }
 
-    void UIComponent::SetWidth(Transforms::UIScale* widthScale)
+    void UIComponent::SetWidth(FaceEngineGUI::UIScale* widthScale)
     {
         if (TManager.WidthScale != nullptr)
         {
@@ -353,7 +353,7 @@ namespace FaceEngineGUI
         RefreshComponent();
     }
 
-    void UIComponent::SetMinWidth(Transforms::UIScale* widthScale)
+    void UIComponent::SetMinWidth(FaceEngineGUI::UIScale* widthScale)
     {
         if (TManager.MinWidthScale != nullptr)
         {
@@ -364,7 +364,7 @@ namespace FaceEngineGUI
         RefreshComponent();
     }
 
-    void UIComponent::SetMaxWidth(Transforms::UIScale* widthScale)
+    void UIComponent::SetMaxWidth(FaceEngineGUI::UIScale* widthScale)
     {
         if (TManager.MaxWidthScale != nullptr)
         {
@@ -375,7 +375,7 @@ namespace FaceEngineGUI
         RefreshComponent();
     }
 
-    void UIComponent::SetHeight(Transforms::UIScale* heightScale)
+    void UIComponent::SetHeight(FaceEngineGUI::UIScale* heightScale)
     {
         if (TManager.HeightScale != nullptr)
         {
@@ -386,7 +386,7 @@ namespace FaceEngineGUI
         RefreshComponent();
     }
 
-    void UIComponent::SetMinHeight(Transforms::UIScale* heightScale)
+    void UIComponent::SetMinHeight(FaceEngineGUI::UIScale* heightScale)
     {
         if (TManager.MinHeightScale != nullptr)
         {
@@ -397,7 +397,7 @@ namespace FaceEngineGUI
         RefreshComponent();
     }
 
-    void UIComponent::SetMaxHeight(Transforms::UIScale* heightScale)
+    void UIComponent::SetMaxHeight(FaceEngineGUI::UIScale* heightScale)
     {
         if (TManager.MaxHeightScale != nullptr)
         {
