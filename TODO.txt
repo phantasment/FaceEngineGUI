@@ -49,6 +49,7 @@ Dropdowns:
     - extend on hover rather than click
 
 Random:
+    - Add way to auto adjust width/height based on intended resolution of texture vs resolution of canvas
     - Add easy way to centre components
     - Right click functionality to all components.
     - Tool tip functionality to all components.

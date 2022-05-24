@@ -3,7 +3,7 @@
 
 namespace FaceEngineGUI
 {
-    Button::Button(FaceEngine::Texture2D* texture, UIComponent* parent) : FaceEngineGUI::UIComponent(0, 0, 0, 0, parent)
+    Button::Button(FaceEngine::Texture2D* texture, UIComponent* parent) : FaceEngineGUI::UIComponent(0, 0, texture->GetWidth(), texture->GetHeight() / 3, parent)
     {
         Initialise(texture);
     }

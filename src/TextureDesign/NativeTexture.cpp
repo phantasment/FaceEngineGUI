@@ -24,24 +24,25 @@ namespace FaceEngineGUI
 
     FaceEngine::Texture2D* NativeTexture::Rasterise() //Fill -> Border + CornerEffect-> VisualEffect
     {
-        char* imageData = new char[Width * Height * 4];
+        return nullptr;
+        // char* imageData = new char[Width * Height * 4];
 
-        // Populating pixel data from Fill.
+        // // Populating pixel data from Fill.
 
-        for (int y = 0; y < Height; ++y)
-        {
-            for (int x = 0; x < Width; ++x)
-            {
-                int dataIndex = (x + (y * Width) * 4);
-                FaceEngine::Colour fillData = Fill->GetPixelData(x, y, Width, Height);
+        // for (int y = 0; y < Height; ++y)
+        // {
+        //     for (int x = 0; x < Width; ++x)
+        //     {
+        //         int dataIndex = (x + (y * Width) * 4);
+        //         FaceEngine::Colour fillData = Fill->GetPixelData(x, y, Width, Height);
 
-                imageData[dataIndex] = fillData.GetRAsInt();
-                imageData[dataIndex + 1] = fillData.GetGAsInt();
-                imageData[dataIndex + 2] = fillData.GetBAsInt();
-                imageData[dataIndex + 3] = fillData.GetAAsInt();
-            }
-        }
+        //         imageData[dataIndex] = fillData.GetRAsInt();
+        //         imageData[dataIndex + 1] = fillData.GetGAsInt();
+        //         imageData[dataIndex + 2] = fillData.GetBAsInt();
+        //         imageData[dataIndex + 3] = fillData.GetAAsInt();
+        //     }
+        // }
 
-        return FaceEngine::Texture2D::CreateTexture2D(Width, Height, imageData);
+        // return FaceEngine::Texture2D::CreateTexture2D(resourceManager, Width, Height, imageData);
     }
 }
