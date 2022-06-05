@@ -1,5 +1,4 @@
 #include "FaceEngineGUI/Components/Button.h"
-#include <iostream>
 
 namespace FaceEngineGUI
 {
@@ -70,7 +69,7 @@ namespace FaceEngineGUI
         {
             return;
         }
-        
+
         renderer->Draw(Texture, Bounds, sourceRectangle);
     }
 }
