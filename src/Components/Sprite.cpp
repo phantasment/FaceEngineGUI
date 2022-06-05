@@ -3,7 +3,7 @@
 
 namespace FaceEngineGUI
 {
-    Sprite::Sprite(FaceEngine::Texture2D* texture) : UIComponent(0, 0, texture->GetWidth(), texture->GetHeight())
+    Sprite::Sprite(FaceEngine::Texture2D* texture, FaceEngineGUI::UIComponent* parent) : UIComponent(0, 0, texture->GetWidth(), texture->GetHeight(), parent)
     {
         Texture = texture;
     }

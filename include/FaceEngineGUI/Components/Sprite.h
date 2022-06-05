@@ -10,7 +10,7 @@ namespace FaceEngineGUI
     public:
         FaceEngine::Texture2D* Texture;
 
-        Sprite(FaceEngine::Texture2D* texture);
+        Sprite(FaceEngine::Texture2D* texture, FaceEngineGUI::UIComponent* parent = nullptr);
         Sprite(int width, int height, FaceEngine::Texture2D* texture, FaceEngineGUI::UIComponent* parent = nullptr);
         Sprite(int x, int y, int width, int height, FaceEngine::Texture2D* texture, FaceEngineGUI::UIComponent* parent = nullptr);
         virtual ~Sprite() { }
