@@ -5,6 +5,7 @@ namespace FaceEngineGUI::Translations
     RelativeTranslation::RelativeTranslation(float translationFactor)
     {   
         TranslationFactor = translationFactor;
+        MeasureFrom = MeasurementPoint::MIN;
     }
 
     RelativeTranslation::RelativeTranslation(float translationFactor, const MeasurementPoint& referencePoint)
