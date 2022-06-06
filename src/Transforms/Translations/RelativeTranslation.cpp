@@ -19,11 +19,11 @@ namespace FaceEngineGUI::Translations
         switch (MeasureFrom)
         {
             case MeasurementPoint::MIN:
-                return parentBounds.Width * TranslationFactor;
+                return parentBounds.X + (parentBounds.Width * TranslationFactor);
             case MeasurementPoint::CENTRE:
-                return (parentBounds.Width * TranslationFactor) - (compBounds.Width / 2);
+                return parentBounds.X + (parentBounds.Width * TranslationFactor) - (compBounds.Width / 2);
             default:
-                return (parentBounds.Width * TranslationFactor) - compBounds.Width;
+                return parentBounds.X + (parentBounds.Width * TranslationFactor) - compBounds.Width;
         }
     }
 
@@ -32,11 +32,11 @@ namespace FaceEngineGUI::Translations
         switch (MeasureFrom)
         {
             case MeasurementPoint::MIN:
-                return parentBounds.Height * TranslationFactor;
+                return parentBounds.Y + (parentBounds.Height * TranslationFactor);
             case MeasurementPoint::CENTRE:
-                return (parentBounds.Height * TranslationFactor) - (compBounds.Height / 2);
+                return parentBounds.Y + (parentBounds.Height * TranslationFactor) - (compBounds.Height / 2);
             default:
-                return (parentBounds.Height * TranslationFactor) - compBounds.Height;
+                return parentBounds.Y + (parentBounds.Height * TranslationFactor) - compBounds.Height;
         }
     }
 

@@ -9,7 +9,7 @@ namespace FaceEngineGUI
 {
     UIComponent::UIComponent(UIComponent* parent)
     {
-        Parent = nullptr;
+        Parent = parent;
 
         TManager.XTranslation = new FaceEngineGUI::Translations::PixelTranslation(0);
         TManager.YTranslation = new FaceEngineGUI::Translations::PixelTranslation(0);
@@ -26,7 +26,7 @@ namespace FaceEngineGUI
 
     UIComponent::UIComponent(const int width, const int height, UIComponent* parent)
     {
-        Parent = nullptr;
+        Parent = parent;
 
         TManager.XTranslation = new FaceEngineGUI::Translations::PixelTranslation(0);
         TManager.YTranslation = new FaceEngineGUI::Translations::PixelTranslation(0);
@@ -43,7 +43,7 @@ namespace FaceEngineGUI
 
     UIComponent::UIComponent(const int x, const int y, const int width, const int height, UIComponent* parent)
     {
-        Parent = nullptr;
+        Parent = parent;
 
         TManager.XTranslation = new FaceEngineGUI::Translations::PixelTranslation(x);
         TManager.YTranslation = new FaceEngineGUI::Translations::PixelTranslation(y);
