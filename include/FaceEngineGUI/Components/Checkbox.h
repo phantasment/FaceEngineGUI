@@ -12,7 +12,7 @@ namespace FaceEngineGUI
     private:
         FaceEngine::Rectanglef sourceRectangle;
         FaceEngineGUI::Util::UIButtonState state;
-        bool checked;
+        bool _checked;
 
         void UpdateState(FaceEngine::GameUpdate* gameUpdate);
         
@@ -23,6 +23,8 @@ namespace FaceEngineGUI
         Checkbox(int x, int y, int width, int height, FaceEngine::Texture2D* texture, FaceEngineGUI::UIComponent* parent = nullptr);
     
         ~Checkbox() { }
+
+        void SetChecked(bool checked);
 
         void Update(FaceEngine::GameUpdate* gameUpdate) override;
         void Draw(FaceEngine::SpriteBatcher* renderer) override;

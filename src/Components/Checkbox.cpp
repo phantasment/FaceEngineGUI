@@ -6,7 +6,7 @@ namespace FaceEngineGUI
     {
         Texture = texture;
         state = FaceEngineGUI::Util::NEUTRAL;
-        checked = false;
+        _checked = false;
         sourceRectangle = FaceEngine::Rectanglef(0, 0, texture->GetWidth(), texture->GetHeight() / 6);
     }
 
@@ -14,7 +14,7 @@ namespace FaceEngineGUI
     {
         Texture = texture;
         state = FaceEngineGUI::Util::NEUTRAL;
-        checked = false;
+        _checked = false;
         sourceRectangle = FaceEngine::Rectanglef(0, 0, texture->GetWidth(), texture->GetHeight() / 6);
     }
 
@@ -24,7 +24,7 @@ namespace FaceEngineGUI
         {
             state = FaceEngineGUI::Util::NEUTRAL;
 
-            if (checked == true)
+            if (_checked == true)
             {
                 sourceRectangle.Y = 3 * (Texture->GetHeight() / 6);
             } 
@@ -36,13 +36,13 @@ namespace FaceEngineGUI
         else if (gameUpdate->IsMouseReleased(0))
         {
             state = FaceEngineGUI::Util::CLICKED;
-            checked = !checked;
+            _checked = !_checked;
         }
         else if (gameUpdate->IsMouseDown(0))
         {
             state = FaceEngineGUI::Util::PRESSED;
             
-            if (checked == true)
+            if (_checked == true)
             {
                 sourceRectangle.Y = 5 * (Texture->GetHeight() / 6);
             }
@@ -55,7 +55,7 @@ namespace FaceEngineGUI
         {
             state = FaceEngineGUI::Util::HOVERED;
 
-            if (checked == true)
+            if (_checked == true)
             {
                 sourceRectangle.Y = 4 * (Texture->GetHeight() / 6);
             }
@@ -64,6 +64,11 @@ namespace FaceEngineGUI
                 sourceRectangle.Y = Texture->GetHeight() / 6;
             }
         }
+    }
+
+    void Checkbox::SetChecked(bool checked)
+    {
+        _checked = checked;
     }
 
     void Checkbox::Update(FaceEngine::GameUpdate* gameUpdate)
