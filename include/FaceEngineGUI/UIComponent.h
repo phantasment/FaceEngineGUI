@@ -59,6 +59,20 @@ namespace FaceEngineGUI
             int GetWidth() const;
             int GetHeight() const;
 
+            void SetX(int pixels);
+            void SetXRelative(float percentage);
+            void CentreX();
+
+            void SetY(int pixels);
+            void SetYRelative(float percentage);
+            void CentreY();
+
+            void SetWidth(int pixels);
+            void SetWidthRelative(float percentage);
+            
+            void SetHeight(int pixels);
+            void SetHeightRelative(float percentage);
+
             virtual void SetX(FaceEngineGUI::UITranslation* xTranslation);
             void SetMinX(FaceEngineGUI::UITranslation* xTranslation);
             void SetMaxX(FaceEngineGUI::UITranslation* xTranslation);

@@ -1,7 +1,10 @@
 #include "FaceEngineGUI/UIComponent.h"
 #include "FaceEngineGUI/Canvas.h"
 #include "FaceEngineGUI/Transforms/Translations/PixelTranslation.h"
+#include "FaceEngineGUI/Transforms/Translations/CentreTranslation.h"
+#include "FaceEngineGUI/Transforms/Translations/RelativeTranslation.h"
 #include "FaceEngineGUI/Transforms/Scales/PixelScale.h"
+#include "FaceEngineGUI/Transforms/Scales/RelativeScale.h"
 #include <iostream>
 #include <algorithm>
 
@@ -11,10 +14,10 @@ namespace FaceEngineGUI
     {
         Parent = parent;
 
-        TManager.XTranslation = new FaceEngineGUI::Translations::PixelTranslation(0);
-        TManager.YTranslation = new FaceEngineGUI::Translations::PixelTranslation(0);
-        TManager.WidthScale = new FaceEngineGUI::Scales::PixelScale(0);
-        TManager.HeightScale = new FaceEngineGUI::Scales::PixelScale(0);
+        TManager.SetX(new FaceEngineGUI::Translations::PixelTranslation(0));;
+        TManager.SetY(new FaceEngineGUI::Translations::PixelTranslation(0));
+        TManager.SetWidth(new FaceEngineGUI::Scales::PixelScale(0));
+        TManager.SetHeight(new FaceEngineGUI::Scales::PixelScale(0));
 
         if (parent != nullptr)
         {
@@ -28,10 +31,10 @@ namespace FaceEngineGUI
     {
         Parent = parent;
 
-        TManager.XTranslation = new FaceEngineGUI::Translations::PixelTranslation(0);
-        TManager.YTranslation = new FaceEngineGUI::Translations::PixelTranslation(0);
-        TManager.WidthScale = new FaceEngineGUI::Scales::PixelScale(width);
-        TManager.HeightScale = new FaceEngineGUI::Scales::PixelScale(height);
+        TManager.SetX(new FaceEngineGUI::Translations::PixelTranslation(0));
+        TManager.SetY(new FaceEngineGUI::Translations::PixelTranslation(0));
+        TManager.SetWidth(new FaceEngineGUI::Scales::PixelScale(width));
+        TManager.SetHeight(new FaceEngineGUI::Scales::PixelScale(height));
 
         if (parent != nullptr)
         {
@@ -45,10 +48,10 @@ namespace FaceEngineGUI
     {
         Parent = parent;
 
-        TManager.XTranslation = new FaceEngineGUI::Translations::PixelTranslation(x);
-        TManager.YTranslation = new FaceEngineGUI::Translations::PixelTranslation(y);
-        TManager.WidthScale = new FaceEngineGUI::Scales::PixelScale(width);
-        TManager.HeightScale = new FaceEngineGUI::Scales::PixelScale(height);
+        TManager.SetX(new FaceEngineGUI::Translations::PixelTranslation(x));
+        TManager.SetY(new FaceEngineGUI::Translations::PixelTranslation(y));
+        TManager.SetWidth(new FaceEngineGUI::Scales::PixelScale(width));
+        TManager.SetHeight(new FaceEngineGUI::Scales::PixelScale(height));
 
         if (parent != nullptr)
         {
@@ -64,6 +67,56 @@ namespace FaceEngineGUI
         {
             delete Children[i];
         }
+    }
+
+    void UIComponent::SetX(int pixels)
+    {
+        SetX(new FaceEngineGUI::Translations::PixelTranslation(pixels));
+    }
+
+    void UIComponent::SetXRelative(float percentage)
+    {
+        SetX(new FaceEngineGUI::Translations::RelativeTranslation(percentage));
+    }
+
+    void UIComponent::CentreX()
+    {
+        SetX(new FaceEngineGUI::Translations::CentreTranslation());
+    }
+
+    void UIComponent::SetY(int pixels)
+    {
+        SetY(new FaceEngineGUI::Translations::PixelTranslation(pixels));
+    }
+
+    void UIComponent::SetYRelative(float percentage)
+    {
+        SetY(new FaceEngineGUI::Translations::RelativeTranslation(percentage));
+    }
+
+    void UIComponent::CentreY()
+    {
+        SetY(new FaceEngineGUI::Translations::CentreTranslation());
+    }
+
+    void UIComponent::SetWidth(int pixels)
+    {
+        SetWidth(new FaceEngineGUI::Scales::PixelScale(pixels));
+    }
+
+    void UIComponent::SetWidthRelative(float percentage)
+    {
+        SetWidth(new FaceEngineGUI::Scales::RelativeScale(percentage));
+    }
+
+    void UIComponent::SetHeight(int pixels)
+    {
+        SetHeight(new FaceEngineGUI::Scales::PixelScale(pixels));
+    }
+
+    void UIComponent::SetHeightRelative(float percentage)
+    {
+        SetHeight(new FaceEngineGUI::Scales::RelativeScale(percentage));
     }
 
     void UIComponent::RefreshComponent()
@@ -136,8 +189,6 @@ namespace FaceEngineGUI
 
     void UIComponent::RemoveChild(UIComponent* childComp)
     {
-        std::cout << Children.size() << std::endl;
-
         for (int i = 0; i < Children.size(); ++i)
         {
             if (Children[i] == childComp)
@@ -150,8 +201,6 @@ namespace FaceEngineGUI
                 break;
             }
         }
-
-        std::cout << Children.size() << std::endl;
     }
 
     void UIComponent::Enable()
@@ -278,12 +327,7 @@ namespace FaceEngineGUI
 
     void UIComponent::SetX(FaceEngineGUI::UITranslation* xTranslation)
     {
-        if (TManager.XTranslation != nullptr) // TODO: move this into TManager
-        {
-            delete TManager.XTranslation;
-        }
-
-        TManager.XTranslation = xTranslation;
+        TManager.SetX(xTranslation);
         RefreshComponent();
     }
 
@@ -311,12 +355,7 @@ namespace FaceEngineGUI
 
     void UIComponent::SetY(FaceEngineGUI::UITranslation* yTranslation)
     {
-        if (TManager.YTranslation != nullptr)
-        {
-            delete TManager.YTranslation;
-        }
-
-        TManager.YTranslation = yTranslation;
+        TManager.SetY(yTranslation);
         RefreshComponent();
     }
 
@@ -344,12 +383,7 @@ namespace FaceEngineGUI
 
     void UIComponent::SetWidth(FaceEngineGUI::UIScale* widthScale)
     {
-        if (TManager.WidthScale != nullptr)
-        {
-            delete TManager.WidthScale;
-        }
-        
-        TManager.WidthScale = widthScale;
+        TManager.SetWidth(widthScale);
         RefreshComponent();
     }
 
@@ -377,12 +411,7 @@ namespace FaceEngineGUI
 
     void UIComponent::SetHeight(FaceEngineGUI::UIScale* heightScale)
     {
-        if (TManager.HeightScale != nullptr)
-        {
-            delete TManager.HeightScale;
-        }
-
-        TManager.HeightScale = heightScale;
+        TManager.SetHeight(heightScale);
         RefreshComponent();
     }
 
