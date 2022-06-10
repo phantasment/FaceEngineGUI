@@ -25,6 +25,7 @@ namespace FaceEngineGUI
         ~Checkbox() { }
 
         void SetChecked(bool checked);
+        bool IsChecked();
 
         void Update(FaceEngine::GameUpdate* gameUpdate) override;
         void Draw(FaceEngine::SpriteBatcher* renderer) override;
