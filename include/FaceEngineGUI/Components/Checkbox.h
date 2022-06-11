@@ -26,6 +26,7 @@ namespace FaceEngineGUI
 
         void SetChecked(bool checked);
         bool IsChecked();
+        bool IsClicked();
 
         void Update(FaceEngine::GameUpdate* gameUpdate) override;
         void Draw(FaceEngine::SpriteBatcher* renderer) override;

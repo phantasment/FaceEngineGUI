@@ -76,6 +76,11 @@ namespace FaceEngineGUI
         return _checked;
     }
 
+    bool Checkbox::IsClicked()
+    {
+        return state == FaceEngineGUI::Util::CLICKED;
+    }
+
     void Checkbox::Update(FaceEngine::GameUpdate* gameUpdate)
     {
         if (!enabled)
