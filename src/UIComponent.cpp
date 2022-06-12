@@ -74,9 +74,19 @@ namespace FaceEngineGUI
         SetX(new FaceEngineGUI::Translations::PixelTranslation(pixels));
     }
 
+    void UIComponent::SetX(int pixels, FaceEngineGUI::MeasurementPoint measureFrom)
+    {
+        SetX(new FaceEngineGUI::Translations::PixelTranslation(pixels, measureFrom));
+    }
+
     void UIComponent::SetXRelative(float percentage)
     {
         SetX(new FaceEngineGUI::Translations::RelativeTranslation(percentage));
+    }
+
+    void UIComponent::SetXRelative(float percentage, FaceEngineGUI::MeasurementPoint measureFrom)
+    {
+        SetX(new FaceEngineGUI::Translations::RelativeTranslation(percentage, measureFrom));
     }
 
     void UIComponent::CentreX()
@@ -84,9 +94,19 @@ namespace FaceEngineGUI
         SetX(new FaceEngineGUI::Translations::CentreTranslation());
     }
 
+    void UIComponent::CentreX(FaceEngineGUI::MeasurementPoint measureFrom)
+    {
+        SetX(new FaceEngineGUI::Translations::CentreTranslation(measureFrom));
+    }
+
     void UIComponent::SetY(int pixels)
     {
         SetY(new FaceEngineGUI::Translations::PixelTranslation(pixels));
+    }
+
+    void UIComponent::SetY(int pixels, FaceEngineGUI::MeasurementPoint measureFrom)
+    {
+        SetY(new FaceEngineGUI::Translations::PixelTranslation(pixels, measureFrom));
     }
 
     void UIComponent::SetYRelative(float percentage)
@@ -94,9 +114,19 @@ namespace FaceEngineGUI
         SetY(new FaceEngineGUI::Translations::RelativeTranslation(percentage));
     }
 
+    void UIComponent::SetYRelative(float percentage, FaceEngineGUI::MeasurementPoint measureFrom)
+    {
+        SetY(new FaceEngineGUI::Translations::RelativeTranslation(percentage, measureFrom));
+    }
+
     void UIComponent::CentreY()
     {
         SetY(new FaceEngineGUI::Translations::CentreTranslation());
+    }
+
+    void UIComponent::CentreY(FaceEngineGUI::MeasurementPoint measureFrom)
+    {
+        SetY(new FaceEngineGUI::Translations::CentreTranslation(measureFrom));
     }
 
     void UIComponent::SetWidth(int pixels)

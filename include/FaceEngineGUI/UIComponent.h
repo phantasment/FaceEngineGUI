@@ -60,12 +60,18 @@ namespace FaceEngineGUI
             int GetHeight() const;
 
             void SetX(int pixels);
+            void SetX(int pixels, FaceEngineGUI::MeasurementPoint measureFrom);
             void SetXRelative(float percentage);
+            void SetXRelative(float percentage, FaceEngineGUI::MeasurementPoint measureFrom);
             void CentreX();
+            void CentreX(FaceEngineGUI::MeasurementPoint measureFrom);
 
             void SetY(int pixels);
+            void SetY(int pixels, FaceEngineGUI::MeasurementPoint measureFrom);
             void SetYRelative(float percentage);
+            void SetYRelative(float percentage, FaceEngineGUI::MeasurementPoint measureFrom);
             void CentreY();
+            void CentreY(FaceEngineGUI::MeasurementPoint measureFrom);
 
             void SetWidth(int pixels);
             void SetWidthRelative(float percentage);
